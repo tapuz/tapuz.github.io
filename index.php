@@ -1,5 +1,5 @@
 <?
-
+//test line
 include('configuration.php');
 require_once ($config['path_wp-config']);
 
