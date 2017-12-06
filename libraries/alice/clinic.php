@@ -1,0 +1,78 @@
+<?php
+class Clinic {
+
+public function getClinics() {
+    global $wpdb;
+	$query=sprintf('SELECT * from table_clinics');
+	$clinics=$wpdb->get_results($query);
+	return  $clinics;
+    
+    
+}
+
+public function getClinic($clinic_id) {
+	global $wpdb;
+	//get clinic object
+	$query= sprintf('SELECT * from table_clinics WHERE clinic_id = %s',$clinic_id); 
+	$clinic = $wpdb->get_row($query);
+	return $clinic;
+	}
+
+	
+	
+public function getClinicsFromGroup($groupName){
+	global $wpdb;
+	$query = $wpdb->prepare('
+		SELECT 
+		
+		table_clinics.clinic_name,
+		table_clinics.clinic_id,
+
+		table_group.name as groupname,
+		table_group.group_id
+
+		FROM `table_clinics`
+		INNER JOIN table_group
+		ON table_clinics.group = table_group.group_id
+
+		WHERE table_group.name = %s',$groupName);
+	$clinics=$wpdb->get_results($query);
+	return  $clinics;
+	}
+
+public function getPractitionersFromClinic($clinic) {
+	global $wpdb;
+	//get all user id's active in clinic
+ 	$query = $wpdb->prepare('SELECT user_id FROM table_clinic_user WHERE clinic_id=%d AND active=1', $clinic);
+	$users = $wpdb->get_results($query);
+	
+	$arrayUserIDS = array();
+	foreach ($users as $user) {
+			array_push($arrayUserIDS,$user->user_id);
+			//error_log($user->user_id);	
+			
+		}
+		error_log(print_r($arrayUserIDS,true));
+	//get all user details
+
+	$args = array(
+			'role'           => 'practitioner',
+			'include'        => $arrayUserIDS,
+			'order'          => 'ASC',
+			'orderby'        => 'display_name',
+			//'fields'         => 'all_with_meta',
+		);
+	
+	
+	// The User Query
+	error_log(print_r($args,1));
+	$user_query = new WP_User_Query( $args );
+	return $user_query->results;
+	
+	}
+
+}
+
+
+
+?>

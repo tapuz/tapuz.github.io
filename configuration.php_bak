@@ -1,0 +1,16 @@
+<?php
+$config = array();
+
+// only change these values 
+$config['wp_root']					=   'http://dev.rugcentrumgent.be/wp_dev/';	
+$config['root']						= 	'http://dev.rugcentrumgent.be/wp_dev/alice/';
+$config['path_wp-config']           =   '../wp-config.php';                                 
+$config['redirect_to']              =   'wp-login.php?redirect_to=alice/index.php';           //the page to redirect to after login
+
+$config['debug_mode']               = 	true;
+
+define('INCLUDE_PATH',              ROOT . 'includes/');
+
+
+
+?>

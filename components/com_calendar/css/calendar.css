@@ -1,0 +1,144 @@
+#sidebar{
+    background-color: #e9ebec;
+}
+
+.fc-messages {
+    display: block;
+    height: 30px;
+    line-height: 24px;
+    background: #00b3f0;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: -81px;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 57px;
+    box-sizing: border-box;
+    padding-top: 14px;
+    font-size: 22px;
+}
+
+.modal.modal-wide .modal-dialog {
+  width: 60%;
+}
+
+.modal.modal-medium .modal-dialog {
+  width: 40%;
+}
+/*Event details modal*/
+#eventDetails .modal-header {
+  background-color: #f3f3f3;
+  color:#0098cb;
+
+}
+
+#eventDetails .modal-header .modal-title {
+  background-color: #f3f3f3;
+  color:#0098cb;
+  font-size: 1.4em;
+  font-weight: 800;
+
+}
+
+
+#eventDetails .modal-header a {
+  background-color: #f3f3f3;
+  color:#0098cb;
+  font-weight:bold;
+  font-size: 0.8em;
+}
+
+#eventDetails .log {
+   border-bottom: 1px solid #ccc;
+   border-radius: 3px;
+   padding: 20px;
+}
+
+#eventDetails .label {
+  margin-right:10px;
+}
+
+#eventDetails .logDateTime {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.btn.set_status.active{
+  color:black;
+}
+
+.appointmentCancelled{
+  text-decoration: line-through;
+}
+
+/*Add appointment modal*/
+
+#editEvent .selected {
+      margin-top: 0;
+      -webkit-box-sizing: border-box;
+      padding: 0 6px 0 6px;
+      line-height: 30px;
+      border-radius: 3px;
+      color: #262626;
+      background: #f8f8f8;
+      border: 1px solid #ccc;
+      
+}
+
+p.selected-patient-details{
+  border-top : 1px solid #ddd;
+}
+
+/*Event styles*/
+
+.fc-title {
+    font-size: 1.1em !important;
+    margin-left: 5px;
+    color: black;
+    font-weight: 900;
+    
+}
+
+
+.fc-event {
+  
+  border-left-width: 0.7em;
+  border-radius: 0;
+  
+    
+}
+
+.fc-event .fc-bg {
+  opacity: 0.8; 
+}
+
+.fc-body {
+  background-color:white;
+}
+
+.icon-thumbs-down{
+  float: right;
+  color: #ff5454 !important;
+}
+
+.icon-thumbs-up{
+  float: right;
+  color: #24a916 !important;
+}
+
+.fc-head {
+  background-color:white;
+}
+
+/*active day header color*/
+th.fc-day-header.fc-widget-header.fc-wed.fc-today {
+  background-color:#7a95a8;
+}
+
+/*get rid of the ugly yellow BG in week and day view*/
+td.fc-day.fc-widget-content.fc-wed.fc-today.fc-state-highlight {
+    background-color: white;
+}

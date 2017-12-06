@@ -1,0 +1,1893 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Ecila - Clinic APP</title> 
+	<link rel="stylesheet" href="http://jquerymobile.com/test/css/themes/default/jquery.mobile.css" /> 
+	<link rel="stylesheet" href="http://jquerymobile.com/test/docs/_assets/css/jqm-docs.css"/>
+	<link rel="stylesheet" href="css/core.css"/>
+	
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+	
+	<script src="http://dev.rugcentrumgent.be/wp/app/js/core.js"></script>
+	<script src="http://dev.rugcentrumgent.be/wp/app/js/history.js"></script>
+	
+	
+	
+	
+	
+
+    </head> 
+<body>
+<div data-role="page" class="type-home">
+	<div data-role="header" data-theme="b" data-position="fixed" data-id="header">
+		<h1>Login</h1>
+		
+	</div>
+	<div data-role="content">
+	 
+
+	<div class="content-secondary">
+
+			<div id="jqm-homeheader">
+				<h1 id="jqm-logo"><img src="images/ecila_project.jpg" alt="ecila project" /></h1>
+				<p>The future of patient management</p>
+			</div>
+			
+		
+
+ 
+
+		</div><!--/content-primary-->
+
+		<div class="content-primary">
+			<div data-role="fieldcontain">
+    			
+    			<input type="text" name="login" id="login" value="" placeholder="login" />
+    		</div>
+    		<div data-role="fieldcontain">
+    			
+    			<input type="password" name="password" id="password value="" placeholder="password"  />
+			</div>	
+			<a href="#history" data-transition="slide"><button type="submit" data-theme="b" data-inline="true">Login</button></div></a>
+		</div>
+
+
+
+	</div>
+
+	<div data-role="footer" class="footer-docs" data-theme="c">
+            <p class="jqm-version"></p>
+			<p>&copy; 2012 Ecila Project</p>
+	</div>
+
+</div><div data-role="page" class="type-interior" id="history">
+
+	<div data-role="header" data-theme="f" data-position="fixed" data-id="header">
+		<h1>Patient: Thierry Duhameeuw</h1>
+		<a href="../../" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+		<a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade">Search</a>
+	</div>
+	
+	<div data-role="content">
+		<div class="content-primary">
+		<h2>History</h2>
+		
+		<p>History of patient John Doe....</p>
+    
+
+		
+		</div><!--/content-primary -->		
+
+		<div class="content-secondary">
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+
+						<h3>History</h3>
+
+						<ul data-role="listview" data-theme="c" data-dividertheme="d">
+
+							<li data-role="list-divider">History</li>
+							<li id="complaint_1" onclick="glowItem(this)"><a href="#history-chief_complaint" data-transition="slide">Chief complaint</a></li>
+							<li id="complaint_2" onclick="glowItem(this)"><a href="#history-medications" data-transition="slide">Medications</a></li>
+							<li id="complaint_3" onclick="glowItem(this)"><a href="#history-family_history" data-transition="slide">Family History</a></li>
+							<li id="complaint_4" onclick="glowItem(this)"><a href="docs-navbar.html">Imaging</a></li>
+							<li id="complaint_5" onclick="glowItem(this)"><a href="bars-fixed.html">Accidents</a></li>
+							<li id="complaint_6" onclick="glowItem(this)"><a href="footer-persist-a.html">Activities</a></li>
+							<li id="complaint_7" onclick="glowItem(this)"><a href="bars-themes.html">Cardiovascular</a></li>
+							<li id="complaint_8" onclick="glowItem(this)"><a href="bars-themes.html">Endocrine</a></li>
+							<li id="complaint_9" onclick="glowItem(this)"><a href="bars-themes.html">Respiratory</a></li>
+
+						</ul>
+				</div><!-- /data-role -->
+		
+		</div><!-- /content-secondary -->		
+
+		</div><!-- /content -->
+
+		<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" data-prefetch="true" class="ui-btn-active ui-state-persist">History</a></li>
+					<li><a href="../examination/examination.php" data-prefetch="true">Examination</a></li>
+					<li><a href="footer-persist-c.html" data-prefetch="true">Treamtment</a></li>
+					<li><a href="footer-persist-d.html" data-prefetch="true">Planning</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+
+</div><!-- /history -->
+
+
+
+
+
+
+
+
+<div data-role="page" class="type-interior" id="history-chief_complaint">
+
+
+	<div data-role="header" data-theme="f" data-position="fixed" data-id="header">
+		<h1>Patient: Thierry Duhameeuw</h1>
+		<a href="#history" data-icon="back" data-iconpos="notext" data-direction="reverse" data-rel="back">Back</a>
+		<a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade">Search</a>
+	</div>
+	
+	<div data-role="content">
+		<div class="content-primary">
+		<h2>Chief complaints</h2>
+	
+		<div data-role="controlgroup">
+       			<legend>Select primary complaints</legend>
+        
+       			<input type="checkbox" name="neckpain" id="neckpain" onclick="toggleComplaint(this)"/>
+       			<label for="neckpain">Neck Pain</label>
+        
+       			<input type="checkbox" name="ubp" id="ubp" class="custom" onclick="toggleComplaint(this)"/>
+       			<label for="ubp">Upper back pain</label>
+        
+       			<input type="checkbox" name="chestpain" id="chestpain" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="chestpain">Chest pain</label>
+       			
+       			<input type="checkbox" name="headaches" id="headaches" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="headaches">Headaches</label>
+       			
+       			<input type="checkbox" name="armpain" id="arm" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="arm">Arm pain</label>
+       			
+       			<input type="checkbox" name="sacralpain" id="sx" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="sx">Sacral pain</label>
+       			
+       			<input type="checkbox" name="footpain" id="foot" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="foot">Foot Pain</label>
+       			
+       			<input type="checkbox" name="anklepain" id="ankle" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="ankle">Ankle pain</label>
+     	  	
+       			<input type="checkbox" name="kneepain" id="kneepain" class="custom" onclick="toggleComplaint(this)"/>
+       			<label for="kneepain">Knee pain</label>
+       
+       			<input type="checkbox" name="handpain" id="hand" class="custom" onclick="toggleComplaint(this)" />
+       			<label for="hand">Hand pain</label>
+        
+     		</div> <!-- /controlgroup -->   
+		
+		
+     
+		
+		</div><!--/content-primary -->		
+
+		<div class="content-secondary">
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+
+						<h3>Complaints</h3>
+
+						<ul class="complaints" data-role="listview" data-theme="c" data-dividertheme="d">
+
+							<li data-role="list-divider" data-theme="b">History - Chief Complaint</li>
+							<li id="neckpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#neckpain_details" data-transition="slide">Neck Pain</a></li>
+							<li id="ubp_list" class="display-hidden" onclick="glowItem(this)"><a href="#ubp_details" data-transition="slide">Upper Back Pain</a></li>
+							<li id="chestpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#chestpain_details" data-transition="slide">Chest Pain</a></li>
+							<li id="headaches_list" class="display-hidden" onclick="glowItem(this)"><a href="#headaches_details" data-transition="slide">Headaches</a></li>
+							<li id="armpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#armpain_details" data-transition="slide">Arm Pain</a></li>
+							<li id="sacralpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#sacralpain_details" data-transition="slide">Sacral Pain</a></li>
+							<li id="footpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#footpain_details" data-transition="slide">Foot Pain</a></li>
+							<li id="anklepain_list" class="display-hidden" onclick="glowItem(this)"><a href="#anklepain_details" data-transition="slide">Ankle Pain</a></li>
+							<li id="kneepain_list" class="display-hidden" onclick="glowItem(this)"><a href="#kneepain_details" data-transition="slide">Knee Pain</a></li>
+							<li id="handpain_list" class="display-hidden" onclick="glowItem(this)"><a href="#handpain_details" data-transition="slide">Hand Pain</a></li>
+							
+						</ul>
+				</div><!-- /data-role -->
+		
+		</div><!-- /content-secondary -->		
+
+		</div><!-- /content -->
+
+			<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history" data-rel="back">Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+
+		</div><!-- /history-chief_complaint -->
+		
+<div data-role="page" class="" id="neckpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>neckpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_neckpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_neckpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_neckpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_neckpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_neckpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_neckpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="ubp_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>ubp_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_ubp_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_ubp_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_ubp_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_ubp_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_ubp_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_ubp_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="chestpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>chestpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_chestpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_chestpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_chestpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_chestpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_chestpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_chestpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="headaches_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>headaches_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_headaches_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_headaches_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_headaches_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_headaches_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_headaches_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_headaches_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="armpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>armpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_armpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_armpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_armpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_armpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_armpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_armpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="sacralpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>sacralpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_sacralpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_sacralpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_sacralpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_sacralpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_sacralpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_sacralpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="footpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>footpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_footpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_footpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_footpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_footpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_footpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_footpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="anklepain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>anklepain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_anklepain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_anklepain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_anklepain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_anklepain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_anklepain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_anklepain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="kneepain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>kneepain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_kneepain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_kneepain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_kneepain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_kneepain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_kneepain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_kneepain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+<div data-role="page" class="" id="handpain_details">
+  <div data-role="header" data-theme="f" data-position="fixed">
+  		
+    <h1>handpain_details</h1>
+    	<a href="#history-chief_complaint" data-icon="back" data-direction="reverse" data-rel="back">Back</a>
+		
+  </div>
+	<div data-role="content" id="thierry">
+	
+
+
+	
+		<div data-role="fieldcontain">
+		
+		
+				<fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Onset:</legend>
+		    	<input type="radio" name="onset_handpain_details" id="day" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="day">Day</label>
+
+				<input type="radio" name="onset_handpain_details" id="week" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="week">Week</label>
+
+				<input type="radio" name="onset_handpain_details" id="month" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="month">Month</label>    
+                
+                <input type="radio" name="onset_handpain_details" id="year" class="custom" onchange="toggleDateSelector(this)"/>
+				<label for="year">year</label>  
+				
+				<input type="radio" name="onset_handpain_details" id="specefic" value="specific" class="custom" onchange="toggleDateSelector(this)" />
+				<label for="specefic">specific</label>  
+				
+				
+		    	</fieldset>
+			</div>
+	
+			
+				<div id="date_onset_handpain_details" class="display-hidden">
+		    	
+	        	<input type="date" name="date" id="date" value="" data-mini="true" />
+	        	</div>
+			
+		
+		    
+	  
+	 
+ 
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Mode:</legend>
+		    	<input type="radio" name="mode" id="lifting" class="custom" />
+				<label for="lifting">lifting</label>
+
+				<input type="radio" name="mode" id="accident" class="custom" />
+				<label for="accident">accident</label>
+
+				<input type="radio" name="mode" id="stress" class="custom" />
+				<label for="stress">stress</label>    
+                
+                <input type="radio" name="mode" id="other" class="custom" />
+				<label for="other">other</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+      <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Character:</legend>
+		    	<input type="checkbox" name="character" id="tingling" class="custom" />
+				<label for="tingling">tingling</label>
+
+				<input type="checkbox" name="character" id="throbbing" class="custom" />
+				<label for="throbbing">throbbing</label>
+
+				<input type="checkbox" name="character" id="dull" class="custom" />
+				<label for="dull">dull</label>    
+                
+                <input type="checkbox" name="character" id="shooting" class="custom" />
+				<label for="shooting">shooting</label>  
+		    </fieldset>
+		</div>
+
+	
+	
+	
+    
+        <div data-role="fieldcontain">
+		    	<label for="slider-0">Scale:</label>
+   				<input type="range" name="slider" id="slider-0" value="0" min="0" max="10"  />
+		</div>
+	
+        
+        
+      
+        <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Aggravating factors:</legend>
+		    	<input type="checkbox"  id="sitting" class="custom" />
+				<label for="sitting">sitting</label>
+
+				<input type="checkbox"  id="standing" class="custom" />
+				<label for="standing">standing</label>
+
+				<input type="checkbox"  id="bending" class="custom" />
+				<label for="bending">bending</label>    
+                
+                <input type="checkbox"  id="ice" class="custom" />
+				<label for="ice">ice</label>  
+		    </fieldset>
+		</div>
+	
+	
+    
+         <div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<legend>Relieving factors:</legend>
+		    	<input type="checkbox" name="rf" id="moving" class="custom" />
+				<label for="moving">moving</label>
+
+				<input type="checkbox" name="rf" id="lying" class="custom" />
+				<label for="lying">lying</label>
+
+				<input type="checkbox" name="rf" id="rest" class="custom" />
+				<label for="rest">rest</label>    
+                
+                <input type="checkbox" name="rf" id="heat" class="custom" />
+				<label for="heat">heat</label>  
+		    </fieldset>
+		</div>
+	
+	<a href="#history-chief_complaint" data-rel="back" data-role="button" data-inline="true">Back</a>
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history-chief_complaint" data-rel="back" >Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - chief_complaint_detail -->
+
+
+
+<div data-role="page" class="" id="history-family_history">
+  <div data-role="header" data-theme="f" data-position="fixed">
+    <h1>Family History</h1>
+    	<a href="#history" data-icon="back" data-iconpos="notext" data-direction="reverse" data-rel="back">Back</a>
+		<a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade">Search</a>
+	
+  </div>
+	<div data-role="content">
+
+	
+		
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+						<h3>Cancer</h3>
+
+						<div data-role="controlgroup">
+							
+							<input type="checkbox" id="breast" class="custom" />
+								<label for="breast">breast</label>  
+							
+							<input type="checkbox" id="prostate" class="custom" />
+								<label for="prostate">prostate</label>  
+							
+							<input type="checkbox" id="lung" class="custom" />
+								<label for="lung">lung</label>  
+							
+							<input type="checkbox" id="bowel" class="custom" />
+								<label for="bowel">bowel</label>  
+							
+							<input type="checkbox" id="testicle" class="custom" />
+								<label for="testicle">testicle</label>  
+							
+						</div><!-- /controlgroup -->		
+						
+			</div><!-- /collapsible -->
+		
+		
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+
+						<h3>Arthritis</h3>
+
+						<div data-role="controlgroup">
+							
+							<input type="checkbox" id="oa" class="custom" />
+								<label for="oa">Osteoarthritis</label>  
+							
+							<input type="checkbox" id="ra" class="custom" />
+								<label for="ra">Rheumatoid arthritis</label>  
+							
+							<input type="checkbox" id="psoariaticarthritis" class="custom" />
+								<label for="psoariaticarthritis">Psoariatic arthritis</label>  
+							
+							<input type="checkbox" id="gout" class="custom" />
+								<label for="gout">Gout</label>  
+							
+						
+							
+						</div><!-- /controlgroup -->		
+						
+		    </div><!-- /collapsible -->
+		    
+		    
+
+	
+	
+
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history" data-rel='back'>Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - history-family_history -->
+
+
+
+
+
+
+<div data-role="page" class="" id="history-medications">
+  <div data-role="header" data-theme="f" data-position="fixed">
+    <h1>Medications</h1>
+    	<a href="#history" data-icon="back" data-iconpos="notext" data-direction="reverse" data-rel="back">Back</a>
+		<a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade">Search</a>
+	
+  </div>
+	<div data-role="content">
+
+	
+		
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+						<h3>Painkillers</h3>
+
+						<div data-role="">
+							
+							
+						    <div class="ui-grid-a">
+								<div class="ui-block-a"><input type="checkbox" id="dafalgan" class="custom" />
+													    <label for="dafalgan">Dafalgan</label>  
+								</div>
+								<div class="ui-block-b"><a href='' data-role="button">Details</a>
+							    </div>
+							    
+							    <div class="ui-block-a"><input type="checkbox" id="paracetamol" class="custom" />
+													    <label for="paracetamol">Paracetamol</label>  
+								</div>
+								<div class="ui-block-b"><a href='' data-role="button">Details</a>
+							    </div>
+							
+							</div><!-- /grid-a -->
+							
+							
+						</div><!-- /controlgroup -->		
+						
+			</div><!-- /collapsible -->
+		
+		
+			<div data-role="collapsible" data-collapsed="true" data-theme="b" data-content-theme="d">
+
+						<h3>Nsaids</h3>
+
+						<div data-role="">
+							
+							<div class="ui-grid-a">
+								<div class="ui-block-a"><input type="checkbox" id="ibuprofen" class="custom" />
+													    <label for="ibuprofen">Ibuprofen</label>  
+								</div>
+								<div class="ui-block-b"><a href='' data-role="button">Details</a>
+							    </div>
+							    
+							    <div class="ui-block-a"><input type="checkbox" id="apranax" class="custom" />
+													    <label for="apranax">apranax</label>  
+								</div>
+								<div class="ui-block-b"><a href='' data-role="button">Details</a>
+							    </div>
+							
+							</div><!-- /grid-a -->
+							
+						
+							
+						</div><!-- /controlgroup -->		
+						
+		    </div><!-- /collapsible -->
+		    
+		    
+
+	
+	
+
+	 
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-id="navbar" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#history" data-rel="back">Back</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+
+</div><!-- /page - history-family_history -->
+
+
+
+
+
+
+
+
+</body>
+</html>

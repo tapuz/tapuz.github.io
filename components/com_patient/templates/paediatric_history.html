@@ -1,0 +1,130 @@
+<script id='tmpl_paediatric_history' type="x-tmpl-mustache">
+   <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Duration of pregnancy</label>
+        <input autocomplete="off" class="form-control" name="paed_pregnancy_duration" type="text" value="{{paed_pregnancy_duration}}">
+			</div>
+      <label>Birth</label>
+      <div class="panel panel-default">
+        <div class="panel-body">
+      <div class="form-group">
+        <label>Place</label>
+        <input autocomplete="off" class="form-control" name="paed_place_of_birth" type="text" value="{{paed_place_of_birth}}">
+			</div>
+      <div class="form-group">
+        <label>stage 1 duration</label>
+        <input autocomplete="off" class="form-control" name="paed_duration_of_labour_stage1" type="text" value="{{paed_duration_of_labour_stage1}}">
+			</div>
+      <div class="form-group">
+        <label>stage 2 duration</label>
+        <input autocomplete="off" class="form-control" name="paed_duration_of_labour_stage2" type="text" value="{{paed_duration_of_labour_stage2}}">
+			</div>
+      <div class="form-group">
+        <label>Ease</label>
+        <input autocomplete="off" class="form-control" name="paed_ease_of_birth" type="text" value="{{paed_ease_of_birth}}">
+			</div>
+      <div class="form-group">
+        <label>Delivery type</label>
+        <input autocomplete="off" class="form-control" name="paed_delivery_type" type="text" value="{{paed_delivery_type}}">
+			</div>
+      <div class="form-group">
+        <label>Delivery interventions</label>
+        <input autocomplete="off" class="form-control" name="paed_interventions" type="text" value="{{paed_interventions}}">
+			</div>
+      <div class="form-group">
+        <label>analgesia</label>
+        <input autocomplete="off" class="form-control" name="paed_analgesia" type="text" value="{{paed_analgesia}}">
+			</div>
+      <div class="form-group">
+        <label>Birth weight (gram)</label>
+        <input autocomplete="off" class="form-control" name="paed_birth_weight" type="text" value="{{paed_birth_weight}}">
+			</div>
+      <div class="form-group">
+        <label>Birth height (cm)</label>
+        <input autocomplete="off" class="form-control" name="paed_birth_height" type="text" value="{{paed_birth_height}}">
+			</div>
+       <div class="form-group">
+        <label>Birth head circumference</label>
+        <input autocomplete="off" class="form-control" name="paed_head_circumference" type="text" value="{{paed_head_circumference}}">
+			</div>
+      </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-6">
+      <label>Feeding</label>
+      <div class="panel panel-default">
+        <div class="panel-body">
+      <div class="form-group">
+        <label class="control-label">Breast feeding</label>
+          <div class="controls">
+          {{#breastfeeding}}	
+            <label class="radio-inline"><input type="radio" name="paed_breast_feeding" value="1">Yes</label>
+            <label class="radio-inline"><input type="radio" name="paed_breast_feeding" value="0">No</label>
+           {{/breastfeeding}} 
+          </div>
+			</div>
+      <div class="form-group">
+        <label class="control-label">Bottle feeding</label>
+          <div class="controls">
+          {{#bottlefeeding}}	
+            <label class="radio-inline"><input type="radio" name="paed_bottle_feeding" value="1">Yes</label>
+            <label class="radio-inline"><input type="radio" name="paed_bottle_feeding" value="0">No</label>
+           {{/bottlefeeding}} 
+          </div>
+			</div>
+      <div class="form-group">
+        <label>Feeding behaviour</label>
+        <input autocomplete="off" class="form-control" name="paed_feeding_behaviour" type="text" value="{{paed_feeding_behaviour}}">
+			</div>
+      </div>
+      </div>
+      <label>Crying</label>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+        <label>When</label>
+        <input autocomplete="off" class="form-control" name="paed_crying_when" type="text" value="{{paed_crying_when}}">
+			</div>
+      <div class="form-group">
+        <label>Type</label>
+        <input autocomplete="off" class="form-control" name="paed_crying_type" type="text" value="{{paed_crying_type}}">
+			</div>
+      <div class="form-group">
+        <label>Duration</label>
+        <input autocomplete="off" class="form-control" name="paed_crying_duration" type="text" value="{{paed_crying_duration}}">
+			</div>    
+        </div>
+      </div>
+      
+      
+      
+      <label>Immunisations</label>
+      <div class="form-group">
+        
+        <input autocomplete="off" class="tagsinput form-control" name="paed_immunisations" type="text" value="{{paed_immunisations}}">
+			</div>
+      <div class="form-group">
+        <label>Sleeping pattern</label>
+        <input autocomplete="off" class="form-control" name="paed_sleeping_pattern" type="text" value="{{paed_sleeping_pattern}}">
+			</div>
+      <div class="form-group">
+        <label>Tummy time</label>
+        <input autocomplete="off" class="form-control" name="paed_tummy_time" type="text" value="{{paed_tummy_time}}">
+			</div>
+      
+      
+    </div>
+  </div>
+   
+   
+   
+   
+   
+        
+        
+   
+   
+  
+</script>

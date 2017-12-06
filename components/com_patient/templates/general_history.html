@@ -1,0 +1,94 @@
+<script id='tmpl_general_history' type="x-tmpl-mustache">
+  <form>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group ">
+            <label class="" for="">Past medical history</label>
+            <div class="row">
+              <div class="col-sm-12">
+                <ul class="list-group pmh cloneWhenFull">
+               
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-sm-6">
+        <div class="form-group ">
+            <label class="" for="">Allergies</label>
+            <div class="row">
+              <div class="col-sm-8">
+                <input name="allergies" class="form-control allergy tagsinput" type="text" value="{{allergies}}">
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+     <div class="row">
+      <div class="col-sm-10">
+        <div class="form-group ">
+            <label class="" for="">Family History</label>
+            <div class="row">
+              <div class="col-sm-8">
+                <ul class="list-group familyhistory cloneWhenFull">
+                
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+      
+    
+     
+  </form>
+
+  
+</script>
+
+
+<script id="tmpl_general_history_pmh" type="x-tmpl-mustache" >
+  {{#pmh}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-xs-4 col-md-3 col-lg-2">
+        <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input name="pmh_year" class="form-control year" type="text" placeholder="year" value="{{year}}">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <input name="pmh_condition" class="form-control condition" type="text" placeholder="condition" value="{{condition}}">
+      </div>
+      <div class="col-sm-4">
+        <div class="col-sm-6">
+          <input class="redflag" type="checkbox" {{#redflag}}checked{{/redflag}}> red flag
+        </div>
+        <div class="col-sm-6">
+          <input class="yellowflag" type="checkbox" {{#yellowflag}}checked{{/yellowflag}}> yellow flag
+        </div>
+      </div>
+    </div>
+  </li>
+  {{/pmh}}
+</script>
+
+
+
+<script id="tmpl_general_history_familyhistory" type="x-tmpl-mustache" >
+  {{#familyhistory}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-6">
+        <input name="condition" class="form-control condition" type="text" placeholder="condition" value="{{condition}}">
+      </div>
+      <div class="col-sm-6">
+        <input name="relationship" class="form-control relationship" type="text" placeholder="relationship" value="{{relationship}}">
+      </div>
+    </div>
+  </li>
+  {{/familyhistory}}
+</script>

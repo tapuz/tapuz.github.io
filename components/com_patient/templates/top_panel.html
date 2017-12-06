@@ -1,0 +1,36 @@
+<script id='tpml_top_panel' type="x-tmpl-mustache">
+   <div class="row">
+          <div class="col-xs-2"><img width="100%" src="assets/img/face-placeholder.jpg"></div>
+          <div class="col-xs-4">
+            <div><strong>DOB :</strong> {{dob}}</div>
+            <div><strong>Age :</strong> {{age}}</div>
+            <div><strong>Sex :</strong> {{sex}}</div>
+            <div><strong>Profession :</strong> {{profession}}</div>
+            <div><strong>Insurance :</strong> {{insurance}}</div>
+            <div>&nbsp;</div>
+            <div><strong>Practitioner :</strong>{{practitioner}}</div>
+          </div>
+          <div class="col-xs-3">
+            <div><i class="icon-phone"></i><a href="tel:%s" rel="external"> {{phone}}</a></div>
+            <div><i class="icon-envelope-alt"></i><a href="mailto:%s" rel="external"> {{email}}</a></div>
+            <div>&nbsp;</div>
+            <address>
+            <a href="http://maps.google.com/?q={{address}}">{{address}}</a><br>
+            </address>
+          </div>
+          <div class="col-xs-3">
+            <div class="text-danger"><strong>RED FLAGS</strong></div>
+            <ul class="list-unstyled text-danger">
+            {{#redflags}}
+							{{#redflag}}<li> {{condition}} </li>{{/redflag}}
+            {{/redflags}}
+            </ul>
+            <div class="text-warning"><strong>YELLOW FLAGS</strong></div>
+						<ul class="list-unstyled text-warning">
+            {{#yellowflags}}
+							{{#yellowflag}}<li> {{condition}} </li>{{/yellowflag}}
+            {{/yellowflags}}
+						</ul>
+          </div>
+        </div>
+</script>
