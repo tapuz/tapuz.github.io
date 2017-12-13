@@ -26,7 +26,7 @@
 	<div class="row">&nbsp;</div>
 	<div class="row">
 		<div class="pull-right">
-		<button type="button" class="btn btn-primary saveInvoice">Save</button>
+		<button onclick="saveLetter();" type="button" class="btn btn-primary saveLetter">Save</button>
 		<button onclick="printLetter();" type="button" class="btn btn-primary">Print</button>
 		</div>	
 	</div>

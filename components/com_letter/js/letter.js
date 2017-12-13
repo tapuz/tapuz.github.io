@@ -11,7 +11,7 @@ $(function() {
 		console.log('clicked');
 		
   		$.ajax({
-  			type: "GET",
+  			type: "post",
 		    url: "index.php?com=letter&page=ajax&task=save_new_letter",
   			data: { letter: letter, patient_id: patient_id, user_id: user_id, name:name, note:note }
 			}).done(function( response ) {
@@ -92,6 +92,7 @@ function deleteLetter()
 
 function saveLetter()
 {
+        alert("saing");
 		var letter_id = $('#letter_id').val();
 		var letter = $("#editor").html();
     	var name = $("#name").val();
