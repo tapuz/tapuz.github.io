@@ -92,7 +92,7 @@ function deleteLetter()
 
 function saveLetter()
 {
-        alert("saing");
+        
 		var letter_id = $('#letter_id').val();
 		var letter = $("#editor").html();
     	var name = $("#name").val();
