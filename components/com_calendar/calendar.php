@@ -234,6 +234,43 @@ switch (getView())
 		include('views/calendar.php');
 
 	break;
+
+	case 'copy':
+	    
+	    //lets copy all of User 1-> thierry
+		
+		
+		global $wpdb;
+		$query = "SELECT * from table_treatments WHERE practitioner = 1";
+		$treatments = $wpdb->get_results($query);
+		
+		foreach($treatments as $treatment){
+			
+			
+			
+			$sql = "INSERT INTO table_appointments (user,start,end,patient_id,service,clinic) VALUES (%d,%s,%s,%d,%d,%d)";
+			$user = 1;
+			$start = $treatment->scheduled_date . ' ' . $treatment->scheduled_time;
+			$end = date('Y-m-d H:i:s',strtotime('+15 minutes',strtotime($start)));
+			$patient_id = $treatment->patient_id;
+			if ($treatment->type == 1) {$service = 2;}
+			if ($treatment->type == 2) {$service = 3;}
+			
+			$clinic = 1;
+			
+			$sql = $wpdb->prepare($sql,$user,$start,$end,$patient_id,$service,$clinic);
+			var_dump($sql); // debug
+			$wpdb->query($sql);
+		}
+		
+		
+		
+		include('views/copy.php');
+
+	break;
+
+
+	
 	
 	
 }
