@@ -75,7 +75,7 @@ class Calendar {
     }
 	
 	
-	public function getAppointmentRequests($group){
+	public function getAppointmentRequests($group){ //not used
 		global $wpdb;
 		$query = $wpdb->prepare("
 			SELECT
