@@ -20,39 +20,15 @@ class Patient
 	}
 	
 	public function searchPatients($q,$group){
-		// take into account-> only get patients from clinic // to be added
-		
-		//SELECT
-
-//table_patients.* 
-
-
-
-//FROM `table_patients`
-
-//left join  table_clinic_user
-//ON  table_clinic_user.clinic_id = table_patients.clinic
-
-//WHERE table_clinic_user.user_id = 12
-		
-		
 		
 		global $wpdb;
 		$query=sprintf("SELECT *, concat(patient_surname, ' ', patient_firstname) as fullname FROM table_patients
 															WHERE (
-																  patient_surname LIKE '%s'
-																  OR patient_firstname LIKE '%s'
-																  OR concat(patient_surname, ' ', patient_firstname) LIKE '%s'
-																  OR address LIKE '%s'
-																  OR email LIKE '%s'
-																  OR phone LIKE '%s'
+																   concat(patient_surname, ' ', patient_firstname) LIKE '%s'
+																  
 																  ) ORDER by patient_id DESC"
 																  ,'%'.$q.'%'
-																  ,'%'.$q.'%'
-																  ,'%'.$q.'%'
-																  ,'%'.$q.'%'
-																  ,'%'.$q.'%'
-																  ,'%'.$q.'%');
+																  );
 		$patients=$wpdb->get_results($query);
 		return $patients;
 		

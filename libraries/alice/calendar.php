@@ -2,7 +2,14 @@
 
 class Calendar {
     
-    public function getAppointments($userID){
+	public function getAppointments($userID){
+		global $wpdb;
+		$query = sprintf("SELECT * from view_appointments WHERE (resourceId = '%d')",$userID);
+		$appointments = $wpdb->get_results($query);
+        return  $appointments;
+	}
+	
+    public function getAppointments_old($userID){
         global $wpdb;
         $query=sprintf("
             SELECT

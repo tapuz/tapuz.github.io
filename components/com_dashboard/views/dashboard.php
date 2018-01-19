@@ -117,9 +117,23 @@
 </script>
 
 <div class="row">
-	<!--<a href="https://bitbucket.org/alicepatientmanagement/alice-patient-management/issues/new" class="btn btn-primary">Report an issue</a>-->
+	<div class="box">
+	<div class="box-header"><h2>Changelog</h2></div>
+	<div class="box-content">
+	<table class="table">
+		<thead><th>v0.3alpha</th></thead>
+		<tbody
+		<tr>
+			<td>- Patient search module only works with patient names. Not with email, phone, address etc.. This to speed up searches</td>
+		</tr>
+		
+		</tbody>
+		
+	</table>
 	
-	
+	</div>	
+		
+	</div>	
 	
 </div>
 
