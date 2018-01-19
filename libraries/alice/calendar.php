@@ -9,48 +9,6 @@ class Calendar {
         return  $appointments;
 	}
 	
-    public function getAppointments_old($userID){
-        global $wpdb;
-        $query=sprintf("
-            SELECT
-            table_appointments.appointment_id as id,
-            table_appointments.user as resourceId,
-            table_appointments.start,
-            table_appointments.end,
-            table_appointments.patient_id as patientID,
-			table_appointments.status as status,
-			table_appointments.clinic,
-			
-            
-            CONCAT(table_patients.patient_surname, ' ', table_patients.patient_firstname) as title,
-            CONCAT(table_patients.patient_surname, ' ', table_patients.patient_firstname) as patientName,
-			
-			table_patients.patient_firstname, 
-			table_patients.phone,
-			table_patients.email,
-            table_patients.dob,
-			
-			
-			wp_users.display_name as resourceName,
-			
-			table_services.id as serviceId,
-			table_services.color as backgroundColor,
-			table_services.color as borderColor
-			
-            FROM table_appointments
-            INNER JOIN table_patients
-            ON table_appointments.patient_id = table_patients.patient_id
-			INNER JOIN wp_users
-			ON table_appointments.user = wp_users.ID
-			INNER JOIN table_services
-			ON table_appointments.service = table_services.id
-			
-            WHERE (table_appointments.user = '%s')"
-                ,$userID);
-        
-        $appointments = $wpdb->get_results($query);
-        return  $appointments;
-    }
     
 	public function getAppointment($id){
         global $wpdb;
