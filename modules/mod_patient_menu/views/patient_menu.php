@@ -22,11 +22,7 @@
 					<input id="patient_country" type="hidden" value="<?echo $patient->country;?>">
 					<input id="patient_phone" type="hidden" value="<?echo $patient->phone;?>">
 					
-					<?
-					   if (current_user_can('add_payment')) {
-					    ?><p><button onclick="addPayment();" type="button" class="btn btn-primary">Add Payment</button></p>	<?
-					   }
-					?>
+				
 					
 					
 					<!--<button onclick="sendPatientToSalesbinder();" type="button" class="btn btn-primary">Create SB Account</button> -->

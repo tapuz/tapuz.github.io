@@ -20,7 +20,7 @@
 						type: "post",
 						crossDomain: true,
 						data: {
-							q: search_val,
+							name: search_val,
 							com :"patient",
 							task :"search",
 							ajax:true
@@ -31,7 +31,7 @@
 						//$.each( response, function ( i, val ) {
 						//	html += "<li>" + val + "</li>";
 						// });
-						console.log(response);
+						
 						
 						$('#results').html(response);
 						$('#results').trigger('updatelayout');

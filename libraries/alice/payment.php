@@ -31,24 +31,26 @@ public function setPaymentInvoicedStatus($payment_id,$status) {
 	 			);
 }
 
-public function addPayment($patient_id,$clinic_id,$practitioner_id,$description,$amount,$payment_date){
-	error_log($payment_date,0);
+public function addPayment($payment){
+	
 	
 	
     global $wpdb;
-    $wpdb->insert( 
+		$wpdb->insert( 
 				'table_payments', 
 				array( 
-					'clinic_id' => $clinic_id,
-					'patient_id' => $patient_id, 
-					'practitioner_id' => $practitioner_id,
-					'description' => $description,
-					'amount' => $amount,
-					'payment_date' => convertDateBE2ISO($payment_date)
+					'clinic_id' => $payment->clinic_id,
+					'patient_id' => $payment->patient_id, 
+					'practitioner_id' => $payment->user,
+					'description' => $payment->description,
+					'amount' => $payment->fee,
+					'payment_date' => $payment->date
 					) 
 	 			);
-	 			
-	
+	if ($wpdb->last_error) {
+	  echo 'error saving the payment: ' . $wpdb->last_error;
+	  throw new Exception();
+	}	 
 }
 
 public function getFees() {

@@ -154,7 +154,7 @@
 </div><!--/col /left content -->
 
 <div class="col-md-3 visible-md visible-lg" id="feed"><!-- Start Right content -->
-		<?loadModule('patient_menu');?>
+		<?//loadModule('patient_menu');?>
 	
 </div><!--/col /Right Content-->
 	

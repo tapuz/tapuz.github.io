@@ -42,6 +42,7 @@ $(document).ready(function() {
   
   $('.booknext').live("click",function(){
     bFlagBookNext = true;
+    fNewPatient = false;
     $('#eventDetails').modal('hide');
     fcMessage = new Noty({
       text: '<span class="text-center">Choose a time for the next appointment</span><span class="pull-right"><i class="fa fa-times-circle">&nbsp;</i></span>',
@@ -127,11 +128,63 @@ $(document).ready(function() {
 
   $('#eventDetails .editPatient').live("click",function(){
     $('#eventDetails').modal('hide');
-    $('#editPatient').modal('show');
+    editPatient(objEvent.patientID);
+
+    //$('#editPatient').modal('show');
     
     
     
   });
+  
+  $(document).on('click','#btn_goto_file',function(){
+    $('#eventDetails').modal('hide');    
+  });
+  
+  $(document).on('click','#eventDetails .addPayment',function(){
+    //get the Clinic to get the clinic name
+    oClinic = clinics.find(x => x.clinic_id === objEvent.clinic.toString());
+    //get the fee
+    services = oClinic.services;
+    oService = services.find(x => x.id === objEvent.serviceId.toString());
+    log (oService);
+    log(oClinic);
+     $('#eventDetails').modal('hide');
+     $('#paymentModal .payment_date').html(moment(objEvent.start).locale(locale).format('L'));
+     $('#paymentModal .clinic').html(oClinic.clinic_name);
+     $('#paymentModal .practitioner').html(objEvent.resourceName);
+     $('#paymentModal .description').val(oService.description);
+     $('#paymentModal .fee').val(oService.fee);
+     $('#paymentModal').modal('show');
+     log(objEvent);
+  });
+
+  $('#paymentModal .add_payment').click(function(){
+    //register the payment
+    Payment.add({patient_id : objEvent.patientID,
+                 clinic_id : oClinic.clinic_id,
+                 user : objEvent.resourceId,
+                 //description : oService.description,
+                 description: $('#paymentModal .description').val(),
+                 //fee : oService.fee,
+                 fee : $('#paymentModal .fee').val(),
+                 date :  moment(objEvent.start)
+                 });
+  });
+
+    $('#paymentModal .add_invoice').click(function(){
+    //register the payment & create new invoice
+    Payment.add({patient_id : objEvent.patientID,
+                 clinic_id : oClinic.clinic_id,
+                 user : objEvent.resourceId,
+                 //description : oService.description,
+                 description: $('#paymentModal .description').val(),
+                 //fee : oService.fee,
+                 fee : $('#paymentModal .fee').val(),
+                 date :  moment(objEvent.start)
+                });
+          window.location.href = 'index.php?com=invoice&view=edit_invoice&task=create_new_invoice&patient_id=' + objEvent.patientID ;
+  });
+  
 });
 
 
@@ -180,8 +233,10 @@ function loadEventDetails() {
 			body += '</div>';
       
       body += '<p><div class="btn-group">';
-			body +='<a type="button" target="'+ objEvent.patientID +'"  href = "index.php?com=patient&view=patient&patient_id=' +objEvent.patientID  + '" class="btn btn-primary btn-sm gotoFile"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Goto File</a>';
-			body += '</div></p>';
+
+			body +='<a id="btn_goto_file" type="button" target="'+ objEvent.patientID +'"  href = "index.php?com=patient&view=patient&patient_id=' +objEvent.patientID  + '" class="btn btn-primary gotoFile"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Goto File</a>';
+      body +='<button type="button" class="btn btn-success addPayment"><i class="fa fa-eur" aria-hidden="true"></i>&nbsp;Add Payment</button>';
+      body += '</div></p>';
 			
 			body += '</div>'; //end appBox
 			

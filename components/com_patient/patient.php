@@ -57,11 +57,13 @@ switch(getView()){
 }
 switch(getTask()){
 		
-	case 'search':
-		
-		$patients = Patient::searchPatients(getVar('q'));
+	case 'search':// has to be updated in the future.. keep as is for now
+		$name = getVar('name');
+		$user = get_current_user_id();
+		$patients = Patient::searchPatients($name,$user);
 		include('views/search_results.php');
 	break;
+
 	
 	case 'addEncounter':
 		$encounter = Patient::addEncounter(json_decode(stripslashes(getVar('encounter'))));
@@ -172,7 +174,8 @@ switch(getTask()){
 	break;
 
 	case 'update_patient':
-		Patient::updatePatient($patient_id,getVar('patient'));
+		echo json_encode(Patient::updatePatient($patient_id,getVar('patient')));
+
 		
 	break;
 

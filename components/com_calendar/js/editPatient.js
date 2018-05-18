@@ -1,11 +1,7 @@
-$(document).ready(function() {
-    var patientID;
-    $('#editPatient').on('shown.bs.modal', function() {
-        
-        //get the Patients' data
-    
-        log(objEvent.title);
-        Patient.get(objEvent.patientID,function(patient){
+
+function editPatient(patientID){
+    $('#editPatient').modal('show');
+    Patient.get(patientID,function(patient){
             
             patientID = patient.patient_id;
            // moment.locale('en');moment.locale('en');
@@ -16,6 +12,7 @@ $(document).ready(function() {
             $('#Patient_Sex').val(patient.sex);
             $('#Patient_Phone').val(patient.phone);
             $('#Patient_Email').val(patient.email);
+            $('#Patient_Insurance').val(patient.insurance);
             $('#clinicSelectEditPatient').val(patient.clinic);
            
             $('#Patient_Address').val(patient.address);
@@ -27,13 +24,14 @@ $(document).ready(function() {
             
             
         });
-        
-       
-      
-        
-        
+
+
+
+    }
+
+$(document).ready(function() {
     
-    });
+
     
     $('#editPatient').on('hidden.bs.modal', function () {
         $('#editPatientForm .patientDetails').hide();
@@ -46,15 +44,20 @@ $(document).ready(function() {
     $('#editPatientForm').on('submit', function(e) {
         e.preventDefault();
         form = ($(this).serializeArray());
+        log('form--> ' + form);
         //save the data to the server
         log(form[2].value);
         
         //format date for DB
         var dob = form[2].value = moment(form[2].value, 'DD-MM-YYYY').format();
-        Patient.update(patientID,form,function(){
+        Patient.update(patientID,form,function(patient){
+            oPatient = JSON.parse(patient);
+            log('this is the udpated patient + ' + oPatient.patient_surname);
             var filter = patientID;
             var events = $('#calendar').fullCalendar('clientEvents', function(evt) {
               return evt.patientID == filter;
+
+            
             });
             
             log(events);
@@ -66,9 +69,13 @@ $(document).ready(function() {
                 this.email = $('#Patient_Email').val();
                 this.phone = $('#Patient_Phone').val();
                 this.dob = dob;
+                this.insurance = $('#Patient_Insurance').val();
             });
             calendar.fullCalendar( 'updateEvents', events );
             
+
+            //update the patient details in the right panel
+            renderRightPanelPatientDetails();
             
             $('#editPatient').modal('hide');
             
@@ -87,3 +94,4 @@ $(document).ready(function() {
 
 
 });
+

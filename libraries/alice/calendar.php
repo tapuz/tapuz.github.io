@@ -2,13 +2,21 @@
 
 class Calendar {
     
-	public function getAppointments($userID){
+	public function getAppointments($userID,$start,$end){
 		global $wpdb;
-		$query = sprintf("SELECT * from view_appointments WHERE (resourceId = '%d')",$userID);
+		$query = $wpdb->prepare("SELECT * from view_appointments WHERE (resourceId = '%d' AND start > DATE_ADD('%s', INTERVAL -3 DAY) AND end < DATE_ADD('%s', INTERVAL +3 DAY))",$userID,$start,$end);
 		$appointments = $wpdb->get_results($query);
-        return  $appointments;
+	    return  $appointments;
+		
 	}
 	
+
+	public function getFutureAppointments($patientID){
+		global $wpdb;
+		$query = $wpdb->prepare("SELECT *,DATE_FORMAT(start, '%%a, %%e %M %Y') as strStart FROM view_appointments WHERE (patientID = %d AND start > CURRENT_DATE)",$patientID);
+		$appointments = $wpdb->get_results($query);
+		return  $appointments;
+	}
     
 	public function getAppointment($id){
         global $wpdb;

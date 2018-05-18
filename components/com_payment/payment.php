@@ -22,6 +22,11 @@ switch (getVar('task')){
 
 	 			
 	break;
+
+	case 'addPayment':
+		$response  = Payment::addPayment(json_decode(stripslashes(getVar('payment'))));
+		
+	break;
 	
 	case 'get_clinics':
 	    //get the clinics to use in the payment

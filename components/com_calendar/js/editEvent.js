@@ -91,6 +91,7 @@ var patientLinkedClinic = null;
                         email: $('#email').val(),
                         practitioner: userID,
                         clinic: $('#clinicSelectEditApp').val()
+                        
                       },function(newPatientID){
                         Appointment.update({id : objEvent.id,
                            start: objEvent.start.format(),
@@ -123,7 +124,7 @@ var patientLinkedClinic = null;
                             calendar.fullCalendar('removeEvents' , objEvent.id );
                             calendar.fullCalendar('renderEvent', appointment);
                             closeEditAppModal();
-          });
+          },'no');
         }
       break;
     }
@@ -197,6 +198,8 @@ var patientLinkedClinic = null;
       
       if( $('#clinicSelectEditApp').val() === null){
           $('#clinicSelectEditApp').val(ui.item.clinic);
+          //render the services
+          renderServicesLookup($('#clinicSelectEditApp').val());
       } else { //give a warning if selected clinic is different from the clinic the patient is linked to...
             if($('#clinicSelectEditApp').val() == patientLinkedClinic){
               $('.warningSelectClinic').hide();
@@ -223,6 +226,7 @@ var patientLinkedClinic = null;
 
   $('#clinicSelectEditApp').live('change', function() {
     log('changing');
+    renderServicesLookup($('#clinicSelectEditApp').val());
     //give a warning if selected clinic is different from the clinic the patient is linked to...
     if(patientLinkedClinic !== null){ // if !== null there is no patient selected
       if($('#clinicSelectEditApp').val() == patientLinkedClinic){
@@ -249,32 +253,33 @@ var patientLinkedClinic = null;
     
   });
 
-  //get all the services
-  $.ajax({
-    type: "post",
-    url: "ajax.php",
-    dataType: "json",
-    data: {
-      com: 'calendar',
-      task: 'getServices'
-    }
-  }).success(function(data) {
-    log(data);
-    selectService = "<select id='selectService' name='selectService' class='form-control'>";
-
-    $.each(data, function() {
-      if (this.default == 1) {
-        iDefaultService = this.id;
-      }
-      selectService += "<option color =" + this.color + " duration=" + this.duration + " value=" + this.id + ">" + this.name + "</option>";
-    });
-    selectService += "</select>";
-
-    $('.selectService').html(selectService);
-
-  });
+  //get all the services related to group or groups
+  //$.ajax({
+  //  type: "post",
+  //  url: "ajax.php",
+  //  dataType: "json",
+  //  data: {
+  //    com: 'calendar',
+  //    task: 'getServices'
+  //  }
+  //}).success(function(data) {
+  //  log(data);
+  //  
+  //  selectService = "<select id='selectService' name='selectService' class='form-control'>";
+  //
+  //  $.each(data, function() {
+  //    if (this.default == 1) {
+  //      iDefaultService = this.id;
+  //    }
+  //    selectService += "<option color =" + this.color + " duration=" + this.duration + " value=" + this.id + ">" + this.name + "</option>";
+  //  });
+  //  selectService += "</select>";
+  //
+  //  //$('.selectService').html(selectService);
+  //
+  //});
   
- 
+
 
 
 

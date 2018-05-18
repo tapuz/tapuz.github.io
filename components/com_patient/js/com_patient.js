@@ -14,6 +14,9 @@ $(document).ready(function(){
 	var notys = []; //array that contains all the notyfications
 	
 	
+	//set the page title = patientName
+	
+	document.title = patientName;
 	
 	//minify the main menu
 	$('#main-menu-min').click ();

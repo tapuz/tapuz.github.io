@@ -1,22 +1,41 @@
 <?php
 class Clinic {
 
-public function getClinics() {
+public function getClinics($user) {
+	//get all the clinics a user is affiliated to and the services... 
+	
     global $wpdb;
-	$query=sprintf('SELECT * from table_clinics');
+	$query = $wpdb->prepare('SELECT * from view_clinics_active_users WHERE user_id = %d', $user);
 	$clinics=$wpdb->get_results($query);
-	return  $clinics;
-    
+	
+	
+	foreach ($clinics as &$clinic) {
+		$query = $wpdb->prepare ('SELECT * from table_services WHERE clinic = %d',$clinic->clinic_id);
+		$services = $wpdb->get_results($query);
+		$clinic->{"services"} = $services;
+		
+	}
+	
+	unset($clinic); //break the reference with the last element in case we need loop again
+	return $clinics;
     
 }
 
 public function getClinic($clinic_id) {
 	global $wpdb;
 	//get clinic object
-	$query= sprintf('SELECT * from table_clinics WHERE clinic_id = %s',$clinic_id); 
+	$query= sprintf('SELECT * from table_clinics WHERE clinic_id = %d',$clinic_id); 
 	$clinic = $wpdb->get_row($query);
 	return $clinic;
 	}
+	
+public function getClinicGroupID($clinic_id) {
+	global $wpdb;
+	//get clinic object
+	$query= sprintf('SELECT table_clinics.group from table_clinics WHERE clinic_id = %d',$clinic_id);
+	$groupID = $wpdb->get_var($query);
+	return $groupID;
+}
 
 	
 	

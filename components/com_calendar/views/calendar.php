@@ -1,22 +1,48 @@
+<script>
+	//some vars injected from PHP in to JS
+	
+	
+</script>
+
 <?
 //view calendar
 ?>
 
 <input type="hidden" id="selectedUserID" value="<?=$selectedUserID;?>"
+
 <div class="row">
-	<div class="col-sm-12 col-md-12"><!-- Start Left content -->
- <div class="row">
-<!-- start: calendar -->
 	
-	<div id="calendar"></div>
-	<div id="sidebar_right" class="col-md-2 hidden">This is the sidebar</div>
+	
+			
+			<!-- start: calendar -->
+			<div id="calendar" class="col-md-12">
+				
+			</div>
+			<div class="col-md-3" id="rightPanel"><!-- Start Right content -->
+				<div class="row header">
+					<div class="input-group" style="padding: 5px;">
+						<span class="input-group-addon"><i class="fa fa-search"></i></span>
+						<input type="text" class="form-control patient-search" pattern="^[a-zA-Z '.-]+$" placeholder="Find patient" required>
+					</div>
+				</div>
+				<div class="content">
+					<div class="search_results">
+					</div>
+					<div class="patient_details">
+						<div class="patient_demographics"></div>
+						<div class="patient_appointments"></div>
+					</div>
+					
+				</div>
+			</div>
 
 
 <!--end calendar-->
 
-	 </div>
-	</div>
+	
+	
 </div>
+
 
 
 
@@ -179,8 +205,8 @@
 <!--stop: eventDetails-modal -->
 
 <!--start: editPatient-modal -->
-<div class="modal modal-medium fade" id="editPatient">
-  <div class="modal-dialog" role="document">
+<div class="modal modal-wide fade" id="editPatient">
+  <div class="modal-dialog  role="document">
 	<form id="editPatientForm" role="form" data-toggle="validator">
     <div class="modal-content">
       <div class="modal-header well">
@@ -255,8 +281,12 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
+				<div class="form-group ">
+					<label class="" for="Patient_Insurance">Insurance</label>
+					<input autocomplete="off" class="first form-control" id="Patient_Insurance" name="insurance" type="text">
+				</div>
 				<div class="form-group">
-					<label class="" for="Patient_Clinic">clinic</label>
+					<label class="" for="Patient_Clinic">Clinic</label>
 					<span class="selectClinic"></span>
 					
 				</div>
@@ -280,6 +310,76 @@
   </div>
 </div>
 <!--stop: editPatient-modal -->
+
+<!--start:payment-modal -->
+<div class="modal fade" id="paymentModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h3 class="modal-title">Add Payment</h3>      
+      </div>
+      <div class="modal-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="date">Date</label>
+				<div class="col-md-4">
+					<p class="form-control-static payment_date"></p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="clinics">Clinic</label>
+				<div class="col-md-6">
+					<p class="form-control-static clinic"></p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="practitioner">Practitioner</label>
+				<div class="col-md-6">
+					<p class="form-control-static practitioner"></p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="description">Description</label>
+				<div class="col-md-4">
+					<input id="description" name="description" type="text" placeholder="Description" class="form-control input-md description">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="fee">Fee</label>
+				<div class="col-md-4">
+					<div class="input-group">
+						
+						
+						 <span class="input-group-addon"><i class="fa fa-euro"></i></span>					
+						<input type="text" name="fee" class="form-control input-md fee">
+					</div>
+				
+				
+				
+				
+				
+				</div>
+			</div>
+		</form>	
+		
+      
+	  </div>
+      <div class="modal-footer">
+	  	<button type="submit" class="btn btn-success add_invoice">Add Payment & Invoice</button>
+		<button type="submit" class="btn btn-success add_payment">Add Payment</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--stop: payment-modal -->
+
+
+<!--load the Templates-->
+
+<?include(TEMPLATES . 'right_panel.html'); ?>
+
 
 
 

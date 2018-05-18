@@ -130,7 +130,7 @@
 	<script src="assets/js/pages/page-inbox.js"></script> -->
 	
 	<!-- end: JavaScript-->
-	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<script src="https://use.fontawesome.com/f8e4645dac.js"></script>
 	<script src="assets/js/alice.js"></script>
 	<script src="assets/js/printThis.js"></script>

@@ -1,5 +1,74 @@
-#sidebar{
-    background-color: #e9ebec;
+#calendar{
+    padding-right: 0px;
+}
+
+#rightPanel{
+    margin-top:-9px;    
+    margin-left: 0px;
+    padding-right: 0px;
+    
+    
+}
+
+#rightPanel .header {
+   margin-bottom: 0.9em;
+   
+}
+
+#rightPanel .content {
+    
+    border-top: solid #d7d7d7 1px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    
+}
+
+#rightPanel .content ul {
+  list-style-type:none
+}
+
+#rightPanel .content .patients_search_results li:first-child {
+  border-top: none;
+}
+#rightPanel .content .patients_search_results li {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  padding-bottom: 6px;
+
+}
+
+#rightPanel .content .patients_search_results li a{
+  color: #0098cb;
+  text-decoration: none;
+
+}
+
+#rightPanel .content .patients_details h3 {
+  
+    min-height: 3px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+    min-width: 100px;
+    float: left;
+ 
+
+}
+
+#rightPanel .content .patients_details span {
+  min-width: 100px;
+}
+
+#rightPanel .content .appointment {
+  border-style: solid;
+  border-width: 0 0 0 10px;
+}
+
+
+
+
+.fc-icon-fa {
+  font-family: FontAwesome;
 }
 
 .fc-messages {
@@ -27,6 +96,13 @@
 
 .modal.modal-medium .modal-dialog {
   width: 40%;
+}
+
+/*Payment modal*/
+
+#paymentModal .modal-header {
+    background-color: #303b42;
+    color: #fff;
 }
 /*Event details modal*/
 #eventDetails .modal-header {
@@ -109,6 +185,13 @@ p.selected-patient-details{
   border-radius: 0;
   
     
+}
+
+.fc-event .event_insurance {
+    font-size: 1.1em !important;
+    margin-left: 5px;
+    color: black;
+    font-weight: 900;
 }
 
 .fc-event .fc-bg {

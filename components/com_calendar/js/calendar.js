@@ -1,10 +1,12 @@
-var objEvent, oldEventStart, oldEventUsername, eventStart, eventEnd, eventAllDay, eventTitle, eventID, patientID, patientName, userID, userName, eventStatus;
+var oPatient,objEvent,objNewAppointment, oldEventStart, oldEventUsername, eventStart, eventEnd, eventAllDay, eventTitle, eventID, patientID, patientName, userID, userName, eventStatus;
 var calendar;
 var users;
-var clinics;
+var clinics; 
 var selectedClinic = 'all';
 var fcMessage;
 $(document).ready(function() {
+	
+	document.title = 'Calendar';
   //set some vars
 
   /*
@@ -25,11 +27,16 @@ $(document).ready(function() {
 
   var mode; //do not set this var as GLOBAL as it WILL interfere with other mode vars (ex. editEvent.js)!!
   //minify the main menu
-  $('#main-menu-min').click();
-  // get users for the calendar select and init calendar for the selected user
+  $('#main-menu-toggle').click();
+  //hide the side panel
+  $('#rightPanel').toggle();
+
+	//append the modals to the body to avoid Z-index problems
 	$('#editPatient').appendTo("body");
 	$('#editEvent').appendTo("body");
+	$('#paymentModal').appendTo("body");
 	
+  // get users for the calendar select and init calendar for the selected user
   initCal();
 
   $.ajax({
@@ -41,12 +48,15 @@ $(document).ready(function() {
       task: 'getUsers'
     }
   }).done(function(data) {
-    console.log('USERS:' +  data);
-    //store users 
+
+		//store users 
     users = data;
+		
     // make the practitioner selector 
     selectUser = "<select id='userSelect' name='userSelect' class='form-control' style='width:174px'>";
-    selectUser += "<option value='all_practitioners'>All practitioners</option>";
+		if (Object.keys(data).length > 1){//there is > 1 user.. show all practitioners option
+			selectUser += "<option value='all_practitioners'>All practitioners</option>";
+		}
     $.each(data, function() {
       selectUser += "<option value=" + this.data.ID + ">" + this.data.display_name + "</option>";
     });
@@ -54,14 +64,15 @@ $(document).ready(function() {
     selectUser += "</select>";
 
 
-		addSelectClinic();
-    addSelectUser();
+	addSelectClinic();
 		
+    addSelectUser();
+	  
     // check selectedUserID: if !=null then we have a practitioner who is logged in.. we want to show him his own calendar by default..
     // otherwize show first calendar in list
 
     userID = $('#selectedUserID').val();
-    
+  
     if (userID != 'none') {
       $('#userSelect option[value=' + userID + ']').attr('selected', 'selected');
       
@@ -99,10 +110,14 @@ $(document).ready(function() {
 	
 	function addSelectClinic() {
 		Clinic.getClinics(function(data){
+			
 			clinics = data;
+			
 			//render clinic select for the calendar
 			var selectClinic = "<select id='clinicSelect' name='clinicSelect' class='form-control' style='width:174px'>";
+			if (clinics.length > 1){
 			selectClinic += "<option value='all'>All Clinics</option>";
+			}
 			$.each(clinics, function() {
 				selectClinic += "<option value='"+ this.clinic_id + "'>"+ this.clinic_name +"</option>";
 			});
@@ -133,7 +148,7 @@ $(document).ready(function() {
 			//set the onchange for the calendar clinic selector
 			$('#clinicSelect').on('change', function() {
 				selectedClinic = $(this).val();
-				log (selectedClinic + ' is the clinic');
+				//log (selectedClinic + ' is the clinic');
 				
 			switch(selectedClinic) {
 				case 'all':
@@ -183,7 +198,7 @@ $(document).ready(function() {
       id: id,
       title: users[id].data.display_name
     });
-    log(users[id].data.display_name + ' is the resourcename');
+    
   }
 
   function removeResources() {
@@ -207,9 +222,10 @@ $(document).ready(function() {
     };
 
     calendar.fullCalendar('addEventSource', events);
+
   }
 
-
+	
 
 
 
@@ -238,10 +254,12 @@ $(document).ready(function() {
       scrollTime: '08:00:00',
       nowIndicator: 'true',
       displayEventTime: false,
-      //theme:'true',
+			lazyFetching: true,
+	  
+      //theme:'false',
       //allDayDefault: false,
       //contentHeight: 5000,
-
+	  
       businessHours: {
         //start: '08:00', // a start time (10am in this example)
         //end: '20:00', // an end time (6pm in this example)
@@ -276,20 +294,19 @@ $(document).ready(function() {
           }
         },
 				
-			
+		toggleSidebarRight:{
+			//text: '<i class="fa fa-chevron-left"',
+			icon: 'fa fa-chevron-right',
+			click: function() {
+				$('#calendar').toggleClass('col-md-9');
+				$('#calendar').toggleClass('col-md-12');
+				$('#rightPanel').toggle();
+				$('#rightPanel .patient-search').focus();
 				
-				toggleSidebarRight:{
-					//text: 'toggle sidebar',
-					click: function() {
-						
 					}
 				}
       },
-			buttonIcons: {
-				
-				toggleSidebarRight: 'right-single-arrow'
-				
-				},
+			
       /*
 					header option will define our calendar header.
 					left define what will be at left position in calendar
@@ -300,7 +317,7 @@ $(document).ready(function() {
       header: {
         left: 'prev,next today plus3m,plus4m,plus6m',
         center: 'title',
-        right: 'agendaDay,agendaWeek,month  toggleSidebarRight'
+        right: 'agendaDay,agendaWeek,month toggleSidebarRight'
           //        left: 'add,sell,locationSelect,staffSelect',
           //        center: 'prev,jumpLeft,today,title,jumpRight,next',
           //        right: 'resourceDay,agendaWeek,month'
@@ -330,20 +347,25 @@ $(document).ready(function() {
           //set the patient as selected
           //set the service as selected
 					appModalMode = 'newAppointment';
+log('the new appo'+ objNewAppointment);
+
+
           $('#editEvent .modal-title').html('Book next appointment');
+					$('#editEvent .datetime').html(moment(start).locale(locale).format('LLL'));
           $('#editEvent').appendTo("body").modal('show');
-          $('.patient-select #patient-search').val(objEvent.patientName); //if patient-search field is empty the save button will stay disabled.
-					$('.patient-select #phone').val(objEvent.phone); //if patient-search field is empty the save button will stay disabled.
+          $('.patient-select #patient-search').val(objNewAppointment.patientName); //if patient-search field is empty the save button will stay disabled.
+					$('.patient-select #phone').val(objNewAppointment.phone); //if patient-search field is empty the save button will stay disabled.
 					
           $('.patient-select').hide();
           $('.selected').show();
 
-          $('.selected-patient-name').html(objEvent.patientName);
-          $('.selected-dob').html(objEvent.dob);
-          $('.selected-telephone').html(objEvent.phone);
-          $('.selected-email').html(objEvent.email);
-					$('#clinicSelectEditApp').val(objEvent.clinic);
-          $('#selectService').val(objEvent.serviceId);
+          $('.selected-patient-name').html(objNewAppointment.patientName);
+          $('.selected-dob').html(objNewAppointment.dob);
+          $('.selected-telephone').html(objNewAppointment.phone);
+          $('.selected-email').html(objNewAppointment.email);
+					$('#clinicSelectEditApp').val(objNewAppointment.clinic);
+					renderServicesLookup(objNewAppointment.clinic);
+          $('#selectService').val(objNewAppointment.serviceId);
           $('.patient-select #patient-search').blur();
 					$('.warningSelectClinic').hide();
 					fcMessage.close();
@@ -407,7 +429,7 @@ $(document).ready(function() {
               Appointment.addLog(objEvent.id, 'Rescheduled', 'appointment changed from ' + moment(oldEventStart).locale(locale).format('LLL') + ' to ' + moment(objEvent.start).locale(locale).format('LLL'), 'label-warning');
             }
 						Appointment.addLog(objEvent.id, 'Email', 'Appointment amendment sent','label-primary');
-          },true); //true = send email
+          },'yes'); //true = send email
 
 
 
@@ -426,7 +448,13 @@ $(document).ready(function() {
         $('#editEvent').modal('show');
         $('#editEvent :input').val('');
 				$('#clinicSelectEditApp').val(selectedClinic);
-        $('#selectService').val(iDefaultService);
+				log('selected clinic is : ' + selectedClinic);
+				if (selectedClinic != 'all'){
+					renderServicesLookup(selectedClinic);
+					$('#selectService').val(iDefaultService);
+				} else {
+					$('.selectService').html('Select a clinic first');
+				}
 				$('.warningSelectClinic').hide();
         eventStart = start;
         eventEnd = end;
@@ -441,6 +469,7 @@ $(document).ready(function() {
       },
       eventClick: function(event, jsEvent, view) {
         objEvent = event;
+        objNewAppointment = event; //used for book next appointment
         eventID = event.id; //set the global var of eventID
         patientID = event.patientID;
 
@@ -498,7 +527,7 @@ $(document).ready(function() {
                   Appointment.addLog(objEvent.id, 'Rescheduled', 'appointment changed from ' + moment(oldEventStart).locale(locale).format('LLL') + ' to ' + moment(objEvent.start).locale(locale).format('LLL'), 'label-warning');
                 }
 								Appointment.addLog(objEvent.id, 'Email', 'Appointment amendment sent','label-primary');
-              }, true ,function() { //true = send email 
+              }, 'yes' ,function() { //true = send email 
 					revertFunc();
 					});
 
@@ -525,7 +554,7 @@ $(document).ready(function() {
 							clinic: event.clinic
               }, function() {
                 log ('app updated');
-              }, false ,function () {
+              }, 'no' ,function () {
 					revertFunc();
 					});
 				
@@ -534,10 +563,19 @@ $(document).ready(function() {
 
 
       eventRender: function(event, element) {
-
+				
+				
+				if (event.insurance === null || event.insurance === undefined){
+					insurance = '';
+				}else{
+					insurance = '<span class="event_insurance">[' + event.insurance + ']<span>';
+				}
+				
         icons = '<i class="fa fa-thumbs-down icon-thumbs-down tip-init" data-original-title="Did not show" title="Did not show"></i>';
         icons += '<i class="fa fa-thumbs-up icon-thumbs-up tip-init" title="Arrived"></i>';
-        $(".fc-content", element).append(icons);
+
+        $(".fc-content", element).append(insurance);
+				$(".fc-content", element).append(icons);
 
         if (event.status == 1) {
           $(element).find('.icon-thumbs-up').show();
@@ -557,7 +595,7 @@ $(document).ready(function() {
 				
 				element.addClass('clinic' + event.clinic);
 				element.addClass('appointment');
-				log('event render');
+				
 
 
       },
@@ -595,9 +633,26 @@ $(document).ready(function() {
   $('.tip-init').tooltip();
 	
 	
-	
-	
-	
-
-
 });
+
+//outside document ready
+
+
+
+function renderServicesLookup(clinic_id){
+		selectService = "<select id='selectService' name='selectService' class='form-control'>";
+		oClinic = clinics.find(x => x.clinic_id === clinic_id.toString());
+		log('here comes the c!!');
+		log(oClinic);
+		  $.each(oClinic.services, function() {
+		    if (this.default == 1) {
+		      iDefaultService = this.id;
+		    }
+		    selectService += "<option color =" + this.color + " duration=" + this.duration + " value=" + this.id + ">" + this.name + "</option>";
+		  });
+    selectService += "</select>";
+
+    $('.selectService').html(selectService);
+	}	
+
+

@@ -20,7 +20,7 @@ var selectPractitioner;
 
 // get all the practitioners
  $.ajax({type: "post", url: "ajax.php", dataType: "json",
-          data: { com: 'payment',task: 'get_users'}
+          data: { com: 'calendar',task: 'getUsers'}
             }).done(function( data ) {
 		        $.jStorage.set("practitioners",data);
 		        console.log(data);
@@ -47,7 +47,7 @@ var selectPractitioner;
 
     //get all the clinics
       $.ajax({type: "post", url: "ajax.php", dataType: "json",
-          data: { com: 'payment',task: 'get_clinics'}
+          data: { com: 'calendar',task: 'getClinics'}
             }).done(function( data ) {
 		        $.jStorage.set("clinics",data);
 		        console.log(data);

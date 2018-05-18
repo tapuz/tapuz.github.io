@@ -7,7 +7,7 @@
 			</label>
 			<div class="controls">
 				<div class="input-group">
-					<input id="search-patient" class="form-control" size="6" type="text" placeholder="Search by name, phone number, email,...">
+					<input id="search-patient" class="form-control" size="6" type="text" placeholder="Search patient...">
 					<span class="input-group-btn">
 						<button class="btn" type="button">
 							Search

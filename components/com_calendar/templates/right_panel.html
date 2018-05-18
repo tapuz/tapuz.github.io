@@ -1,0 +1,121 @@
+<script id='tmpl_patient_search_results' type="x-tmpl-mustache">
+   <div class="patients_search_results"> 
+    <ul>
+        {{#patients}}
+			<li class="patient" patient_id="{{patient_id}}"><a href="#"><i class="fa fa-user">&nbsp;&nbsp;</i><span> {{patient_surname}} {{patient_firstname}}</span></i> </li>
+        {{/patients}}
+    <ul>
+    </div>
+
+
+
+</script>
+
+<script id='tmpl_patient_demographics' type="x-tmpl-mustache">
+
+
+    <div class="patient_demographics">
+        <h2>
+            <a class="back" href="#"><i class="fa fa-long-arrow-left fa-fw"></i></a> &nbsp;
+            
+                <a target="{{patient_id}}" href="index.php?com=patient&view=patient&patient_id={{patient_id}}" class="fc-customer-name" data-bind="text: fullName, attr:{href: $root.viewCustomerUrl()}">{{patient_name}} &nbsp;&nbsp;{{{sex}}}</a>
+        </h2>
+        
+        <div>
+            <span class="btn-group button-add-events">
+                <button class="btn btn-success bookAppointment" title="New appointment">
+                    <i class="fa fa-calendar-plus-o"></i>
+                </button>
+            </span>
+
+            <!--<span class="create-sale-button btn-group button-add-events">
+                <button class="btn dropdown-toggle btn-icon-drop btn-success add-sale" data-toggle="dropdown" title="Create sale">
+                    <i class="fa fa-tag"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="add-invoice" href="#" data-bind="attr: { 'data-customer-id': id}" data-customer-id="8736344">Product</a></li>
+                    <li><a class="add-walkin-service" href="#" data-bind="attr: { 'data-customer-id': id}" data-customer-id="8736344">Service</a></li>
+                    <li><a class="add-concession" href="#" data-bind="attr: { 'data-customer-id': id}" data-customer-id="8736344">Package</a></li>
+                    <li><a class="add-credit-nav" href="#" data-bind="attr: { 'data-customer-id': id}" data-customer-id="8736344">Credit</a></li>
+                </ul>
+            </span>-->
+
+
+
+            <span class="btn-group">
+                <a class="btn">Send message</a>
+            </span>
+            <span class="btn-group">
+                <a class="btn editPatient" >Edit</a>
+            </span>
+
+            <span class="clearfix"></span>
+        </div>
+        <div class="well">
+            <div class='row'>
+                <div class="col-sm-3"><label>Age</label></div>
+                <div class="col-sm-1">{{age}}</div>
+                
+
+            </div>
+            <div class='row'>
+                <div class="col-sm-3"><label>DOB</label></div>
+                <div class="col-sm-3">{{dob}}</div>
+            </div>
+            <div class='row'>
+                <div class="col-sm-3"><label>Telephone</label></div>
+                <div class="col-sm-9">{{phone}}</div>
+            </div>
+            <div class='row'>
+                <div class="col-sm-3"><label>Email</label></div>
+                <div class="col-sm-9"><a  href="mailto:{{email}}">{{email}}</a></div>
+            </div>
+            <div class='row'>
+                <div class="col-sm-3"><label>address</label></div>
+                <div class="col-sm-9">
+                    <div class="row"><div class="col-sm-12">{{street}}</div></div>
+                    <div class="row"><div class="col-sm-12">{{city}}</div></div>
+                    <div class="row"><div class="col-sm-12">{{country}}</div></div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-sm-3"><label>Insurance</label></div>
+                <div class="col-sm-9">{{insurance}}</div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</script>
+
+<script id='tmpl_patient_appointments' type="x-tmpl-mustache">
+    <div><label>Next appointment :</label> 
+        <ul>
+            {{#appointments}}
+                <li start="{{start}}" class="appointment" style="border-color:{{borderColor}}">
+                    <div>
+                    <label>{{strStart}}</label>
+                    <a href="#">{{description}}</a>
+                    </div>
+                    <div>
+                    <label>with {{resourceName}} @ {{clinicName}} </label>
+                    </div>
+                </li>
+            {{/appointments}}
+
+         </ul>
+    </div>
+       
+    <div class="btn-group btn-group-justified" role="group">
+        <a href="#" class="btn btn-default bookAppointment" role="button">Book appointment</a>
+    </div>
+   
+  
+
+
+
+</script>

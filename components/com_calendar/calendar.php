@@ -1,5 +1,11 @@
 <?php 
 //Component Calendar
+
+define('COMPONENT','calendar');
+define('TEMPLATES', ROOT . '/components/com_' . COMPONENT . '/templates/');
+
+
+loadLib('clinic');
 loadLib('patient');
 loadLib('calendar');
 loadLib('clinic');
@@ -22,54 +28,65 @@ loadJS('eventDetails.js','calendar');
 loadJS('clinic.js','calendar');
 loadJS('editPatient.js','calendar');
 loadJS('email.js','calendar');
+loadJS('payment.js','calendar');
+loadJS('rightPanel.js','calendar');
+loadJS('mustache.min.js');
 
 //loadJS('jquery.balloon.min.js');
 
-//
 
 switch (getVar('task')){
 	
+	case 'searchPatients':
+		$name = getVar('name');
+		$user = get_current_user_id();
+		echo json_encode(Patient::searchPatients($name,$user));
+		//echo Patient::searchPatients($name,$user);
+	break;
+	
 	case 'get_data':
-		$appointments = Calendar::getAppointments(getVar('user_id'));
+		$appointments = Calendar::getAppointments(getVar('user_id'),getVar('start'),getVar('end'));
 		echo json_encode($appointments);
-		
-			
- 
-			//error_log(json_encode($appointments));
-			//error_log('user id: ' . getVar('user_id'));
 	break;
 	   
 	case 'getUsers':
-		// WP_User_Query arguments
-		$args = array(
-			'role'           => 'practitioner',
+		//only get
+		if ( current_user_can('view_all_calendars') ) {
+			$args = array(
+			//user role__in to select multiple roles
+			'role__in'       => array('practitioner','clinic_admin'),
 			'order'          => 'ASC',
 			'orderby'        => 'display_name',
 			'fields'         => 'all_with_meta',
-		);
-
-	// The User Query
-		$user_query = new WP_User_Query( $args );
-		$users = $user_query->results;
-		
-		foreach($users as $user){
-		 error_log(print_r(get_user_meta ( $user->working_plan),1));;
+			);
+			
+		} else {
+			
+			$args = array(
+			'include'          => array(get_current_user_id()),
+			'fields'         => 'all_with_meta',
+			);
 		}
+		// The User Query
+			$user_query = new WP_User_Query( $args );
+			$users = $user_query->results;
+			echo $users = json_encode($user_query->results);
+			
+			error_log('HERE ARE THE USERS!!! :  ' . $users);
+		//foreach($users as $user){
+		 //error_log(print_r(get_user_meta ( $user->working_plan),1));;
+		//}
+
 		
-		echo $users = json_encode($user_query->results);
 		
-		//error_log($users);
 	break;
 	
 	case 'getClinics':
-		 echo $clinics = json_encode(Clinic::getClinics());
+		 $user = get_current_user_id();
+		 echo $clinics = json_encode(Clinic::getClinics($user));
 	   
 	break;
 	
-	case 'searchPatients':
-		$name = getVar('name');
-		echo json_encode(Patient::searchPatients($name));
-	break;
 	
 	case 'addAppointment':
 		
@@ -127,7 +144,7 @@ switch (getVar('task')){
 		
 		error_log('flag : '. getVar('sendEmail'));
 		
-		if (getVar('sendEmail') == true) {
+		if (getVar('sendEmail') == 'yes') {
 			
 			//lets send a mail to notify patient of updated appointment
 			loadLib('email');
@@ -171,8 +188,12 @@ switch (getVar('task')){
 	case 'getAppointment':
 		echo json_encode(Calendar::getAppointment(getVar('appointmentID')));
 	break;
+
+	case 'getFutureAppointments':
+		echo json_encode(Calendar::getFutureAppointments(getVar('patientID')));
+	break;
 	
-	case 'getAppointmentRequests':
+	case 'getAppointmentRequests': //not used anymore
 		echo json_encode(Calendar::getAppointmentRequests(getVar('group')));
 	break;
 	case 'setStatus':
@@ -181,7 +202,10 @@ switch (getVar('task')){
 	
 	case 'addNewPatient':
 		
-		$newPatientID = Patient::addNewPatient(stripslashes(getVar('patient')));
+		$oPatient = json_decode(stripslashes(getVar('patient')));
+		$group = $group = Clinic::getClinicGroupID($oPatient->clinic);
+		$newPatientID = Patient::addNewPatient($oPatient,$group);
+		
 		setResponse($newPatientID);
 	break;
 
@@ -226,7 +250,7 @@ switch (getView())
 	case 'calendar':
 	    
 	    //add capabilities check to limit view to certain calendars
-		if( current_user_can('practitioner')) {
+		if( current_user_can('clinic_admin') or current_user_can('practitioner') ) { //role or capability
 			$selectedUserID = get_current_user_id();
 		} else {
 			$selectedUserID = 'none';

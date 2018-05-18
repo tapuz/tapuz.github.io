@@ -126,6 +126,9 @@
 		<tr>
 			<td>- Patient search module only works with patient names. Not with email, phone, address etc.. This to speed up searches</td>
 		</tr>
+		<tr>
+			<td>- Bugfix: when book next appointment was clicked from the calendar a duplicate of the patient was created.</td>
+		</tr>
 		
 		</tbody>
 		
