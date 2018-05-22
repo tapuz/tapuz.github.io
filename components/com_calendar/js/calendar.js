@@ -2,8 +2,12 @@ var oPatient,objEvent,objNewAppointment, oldEventStart, oldEventUsername, eventS
 var calendar;
 var users;
 var clinics; 
+var clinicID;
 var selectedClinic = 'all';
 var fcMessage;
+var highlightEvent = false;
+var eventIDtoHighlight;
+
 $(document).ready(function() {
 	
 	document.title = 'Calendar';
@@ -64,7 +68,7 @@ $(document).ready(function() {
     selectUser += "</select>";
 
 
-	addSelectClinic();
+	  addSelectClinic();
 		
     addSelectUser();
 	  
@@ -83,6 +87,7 @@ $(document).ready(function() {
     selectedUser = $('#userSelect').val();
     getEvents(selectedUser);
     getResource(selectedUser);
+    renderWorkingPlan();
 
     $('#userSelect').on('change', function() {
       calendar.fullCalendar('removeEventSources');
@@ -100,6 +105,7 @@ $(document).ready(function() {
         console.log('refetching events : ' + selectedUser);
         getResource(selectedUser);
         getEvents(selectedUser);
+        renderWorkingPlan();
         //set mode to 1
         mode = 1;
       }
@@ -149,12 +155,11 @@ $(document).ready(function() {
 			$('#clinicSelect').on('change', function() {
 				selectedClinic = $(this).val();
 				//log (selectedClinic + ' is the clinic');
-				
+      renderWorkingPlan();	
+      
 			switch(selectedClinic) {
 				case 'all':
-					$.each(clinics, function() {
-						//
-					});
+					
 					$('.appointment').show();
         break;
 				
@@ -169,9 +174,6 @@ $(document).ready(function() {
 		});
 	}
 	
-	
-	
-
   function addSelectUser() {
     $('.fc-toolbar .fc-left').prepend(selectUser);
   }
@@ -196,7 +198,7 @@ $(document).ready(function() {
   function getResource(id) {
     calendar.fullCalendar('addResource', {
       id: id,
-      title: users[id].data.display_name
+      title: users[id].data.display_name  
     });
     
   }
@@ -223,6 +225,101 @@ $(document).ready(function() {
 
     calendar.fullCalendar('addEventSource', events);
 
+  }
+
+
+  function renderWorkingPlan() {
+    calendar.fullCalendar('removeEvents','not_working');
+    calendar.fullCalendar('removeEvents','working');
+    calendar.fullCalendar('removeEvents','break');
+    $.ajax({
+      type: "post",
+      url: "ajax.php",
+      dataType: "json",
+      data: {
+        com: 'calendar',
+        task: 'getWorkingPlan',
+        userID:selectedUser
+      }
+    }).done(function(workingPlan) {
+       $.each(workingPlan,function(){
+        if(selectedClinic == 'all'){
+          var color = this.color;
+          var clinic = this.clinic;
+          $.each(this.workingPlan,function(){
+            
+            $.each(this,function( day, dayplan ) {
+                calendar.fullCalendar('renderEvent', {
+                  id:'not_working', //all need the same ID, else you would get cumulative layer coloring
+                  className: 'fc-nonbusiness',
+                  start: dayplan.start,
+                  end: dayplan.end,
+                  dow: [dayplan.dow], 
+                  rendering: 'inverse-background',
+                  type:'bgEvent'
+                },true);
+                calendar.fullCalendar('renderEvent', {
+                  id:'working', //all need the same ID, else you would get cumulative layer coloring
+                  //className: className,
+                  start: dayplan.start,
+                  end: dayplan.end,
+                  dow: [dayplan.dow], 
+                  rendering: 'background',
+                  type:'bgEvent',
+                  //color:color,
+                  clinic:clinic
+                },true);
+              //render the breaks
+              $.each(dayplan.breaks,function(){
+                log('break start:' + this.start + 'dow: ' + dayplan.dow);
+                  calendar.fullCalendar('renderEvent', {
+                  id:'break', //all need the same ID, else you would get cumulative layer coloring
+                  className: 'fc-nonbusiness',
+                  start: this.start,
+                  end: this.end,
+                  dow: [dayplan.dow], 
+                  rendering: 'background',
+                  type:'bgEvent'
+                },true); 
+              });   
+            });
+          });
+
+
+        }else{ 
+          
+          if(this.clinic == selectedClinic){
+            log('WE HAVE A MATCH :' + this.clinic ); // only render this working plan
+            $.each(this.workingPlan,function(){
+              $.each(this,function( day, dayplan ) {
+                  calendar.fullCalendar('renderEvent', {
+                    id:'not_working', //all need the same ID, else you would get cumulative layer coloring
+                    className: 'fc-nonbusiness',
+                    start: dayplan.start,
+                    end: dayplan.end,
+                    dow: [dayplan.dow], 
+                    rendering: 'inverse-background',
+                    type:'bgEvent'
+                  },true); 
+                //render the breaks
+              $.each(dayplan.breaks,function(){
+                log('break start:' + this.start + 'dow: ' + dayplan.dow);
+                calendar.fullCalendar('renderEvent', {
+                  id:'break', //all need the same ID, else you would get cumulative layer coloring
+                  className: 'fc-nonbusiness',
+                  start: this.start,
+                  end: this.end,
+                  dow: [dayplan.dow], 
+                  rendering: 'background',
+                  type:'bgEvent'
+                },true);
+              });   
+              });
+            });   
+          } 
+        } 
+      }); 
+    });
   }
 
 	
@@ -261,8 +358,8 @@ $(document).ready(function() {
       //contentHeight: 5000,
 	  
       businessHours: {
-        //start: '08:00', // a start time (10am in this example)
-        //end: '20:00', // an end time (6pm in this example)
+        start: '07:00', // a start time (10am in this example)
+        end: '23:30', // an end time (6pm in this example)
 
         dow: [1, 2, 3, 4, 5, 6]
           // days of week. an array of zero-based day of week integers (0=Sunday)
@@ -347,7 +444,7 @@ $(document).ready(function() {
           //set the patient as selected
           //set the service as selected
 					appModalMode = 'newAppointment';
-log('the new appo'+ objNewAppointment);
+
 
 
           $('#editEvent .modal-title').html('Book next appointment');
@@ -363,9 +460,22 @@ log('the new appo'+ objNewAppointment);
           $('.selected-dob').html(objNewAppointment.dob);
           $('.selected-telephone').html(objNewAppointment.phone);
           $('.selected-email').html(objNewAppointment.email);
-					$('#clinicSelectEditApp').val(objNewAppointment.clinic);
-					renderServicesLookup(objNewAppointment.clinic);
-          $('#selectService').val(objNewAppointment.serviceId);
+
+          if (selectedClinic != 'all'){
+            $('#clinicSelectEditApp').val(selectedClinic);
+            renderServicesLookup(selectedClinic);
+            $('#selectService').val(iDefaultService);
+          } else if (clinicID != '') {
+            //get the clinic id from the background event if it exists
+            $('#clinicSelectEditApp').val(clinicID);
+            renderServicesLookup(clinicID);
+            $('#selectService').val(iDefaultService);
+            clinicID ='';
+          } else {
+            $('.selectService').html('Select a clinic first');
+          }
+
+          
           $('.patient-select #patient-search').blur();
 					$('.warningSelectClinic').hide();
 					fcMessage.close();
@@ -409,6 +519,15 @@ log('the new appo'+ objNewAppointment);
           calendar.fullCalendar('updateEvent', objEvent);
           calendar.fullCalendar('unselect');
 
+          if (selectedClinic != 'all'){
+            clinic = selectedClinic;
+          } else if (clinicID != ''){
+            clinic = clinicID;
+            clinicID = '';
+          } else {
+            clinic = objEvent.clinic;
+          }
+
           Appointment.update({
             id: objEvent.id,
             start: objEvent.start.format(),
@@ -417,8 +536,9 @@ log('the new appo'+ objNewAppointment);
             patientID: objEvent.patientID,
             service: objEvent.serviceId,
             status: objEvent.status,
-						clinic: objEvent.clinic
+						clinic: clinic
           }, function() {
+            renderRightPanelPatientAppointments();
             if (bFlagRefetchEventsAfterReschedule === true) {
               calendar.fullCalendar('refetchEvents');
             }
@@ -447,14 +567,22 @@ log('the new appo'+ objNewAppointment);
         appModalMode = 'newAppointment';
         $('#editEvent').modal('show');
         $('#editEvent :input').val('');
-				$('#clinicSelectEditApp').val(selectedClinic);
+				
 				log('selected clinic is : ' + selectedClinic);
 				if (selectedClinic != 'all'){
+          $('#clinicSelectEditApp').val(selectedClinic);
 					renderServicesLookup(selectedClinic);
 					$('#selectService').val(iDefaultService);
+				} else if (clinicID != '') {
+          //get the clinic id from the background event if it exists
+          log('the clinic id from BG is : ' + clinicID);
+          $('#clinicSelectEditApp').val(clinicID);
+          renderServicesLookup(clinicID);
+					$('#selectService').val(iDefaultService);
+          clinicID ='';
 				} else {
-					$('.selectService').html('Select a clinic first');
-				}
+          $('.selectService').html('Select a clinic first');
+        }
 				$('.warningSelectClinic').hide();
         eventStart = start;
         eventEnd = end;
@@ -489,7 +617,7 @@ log('the new appo'+ objNewAppointment);
 
       eventDrop: function(event, delta, revertFunc) {
 
-        log(oldEventStart);
+        //log(oldEventStart);
         objEvent = event;
         bootbox.confirm({
           message: "Confirm the move?",
@@ -507,6 +635,9 @@ log('the new appo'+ objNewAppointment);
           callback: function(result) {
             if (result === true) // update appointment in DB
             {
+
+
+
               Appointment.update({
 									id: event.id,
                   patientID: event.patientID,
@@ -515,9 +646,15 @@ log('the new appo'+ objNewAppointment);
                   user: event.resourceId,
                   service: event.serviceId,
 									status: event.status,
-									clinic: event.clinic
+									clinic: function (){
+                    if (clinicID != ''){
+                      return clinicID; 
+                    } else { 
+                      return event.clinic;}
+                    }
 				  
               }, function() {
+                renderRightPanelPatientAppointments(); 
                 event.resourceName = users[event.resourceId].data.display_name;
                 var newEventUsername = event.resourceName;
 								
@@ -592,11 +729,26 @@ log('the new appo'+ objNewAppointment);
         if (event.status == 6) {
           $(element).find('.fc-title').addClass('appointmentCancelled');
         }
-				
-				element.addClass('clinic' + event.clinic);
-				element.addClass('appointment');
-				
 
+
+
+				if (event.type != 'bgEvent'){
+				  element.addClass('clinic' + event.clinic);
+				  element.addClass('appointment');
+        }
+
+
+        
+        if (highlightEvent === true){
+          if (event.id == eventIDtoHighlight){
+            highlightEvent = false;
+            element.addClass('run-long-pop-animation');
+            
+          }
+          
+        }
+
+    
 
       },
 			
@@ -613,7 +765,8 @@ log('the new appo'+ objNewAppointment);
 					$('.appointment').hide();
 					$('.clinic' + selectedClinic).show();
 					//log('showing only specific clinic');
-				}
+        }
+
 			},
 
       viewRender: function(view, element) {
@@ -621,7 +774,14 @@ log('the new appo'+ objNewAppointment);
           //do something
         }
 
-      }
+      },
+      selectOverlap: function(event) {
+        //Little trick to get BG event details (clinic id etc..)
+        //if the function returns true it will allow the selection
+        console.log('BG event ' + event.clinic);
+        clinicID = event.clinic;
+        return true;
+    }
 
 
 
@@ -656,3 +816,4 @@ function renderServicesLookup(clinic_id){
 	}	
 
 
+  

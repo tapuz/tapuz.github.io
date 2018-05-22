@@ -34,6 +34,7 @@
   border-top: 1px solid #eee;
   padding-top: 10px;
   padding-bottom: 6px;
+  cursor: pointer;
 
 }
 
@@ -62,6 +63,12 @@
 #rightPanel .content .appointment {
   border-style: solid;
   border-width: 0 0 0 10px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+#rightPanel .content .appointment label {
+  cursor: pointer;
 }
 
 
@@ -198,6 +205,12 @@ p.selected-patient-details{
   opacity: 0.8; 
 }
 
+
+
+.run-long-pop-animation{animation:long-pop-animation 3000ms linear both}@keyframes long-pop-animation{0%{transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}6.57%{transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}6.67%{transform:matrix3d(.5, 0, 0, 0, 0, .5, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}8.63%{transform:matrix3d(.691, 0, 0, 0, 0, .691, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}10.5%{transform:matrix3d(.968, 0, 0, 0, 0, .968, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}12.37%{transform:matrix3d(1.187, 0, 0, 0, 0, 1.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}14.23%{transform:matrix3d(1.264, 0, 0, 0, 0, 1.264, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}16.29%{transform:matrix3d(1.191, 0, 0, 0, 0, 1.191, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}18.35%{transform:matrix3d(1.037, 0, 0, 0, 0, 1.037, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}20.4%{transform:matrix3d(.907, 0, 0, 0, 0, .907, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}22.36%{transform:matrix3d(.864, 0, 0, 0, 0, .864, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}24.42%{transform:matrix3d(.902, 0, 0, 0, 0, .902, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}26.47%{transform:matrix3d(.981, 0, 0, 0, 0, .981, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}28.53%{transform:matrix3d(1.048, 0, 0, 0, 0, 1.048, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}30.49%{transform:matrix3d(1.07, 0, 0, 0, 0, 1.07, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}34.6%{transform:matrix3d(1.009, 0, 0, 0, 0, 1.009, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}38.62%{transform:matrix3d(.964, 0, 0, 0, 0, .964, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}46.75%{transform:matrix3d(1.019, 0, 0, 0, 0, 1.019, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}54.87%{transform:matrix3d(.99, 0, 0, 0, 0, .99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}63%{transform:matrix3d(1.005, 0, 0, 0, 0, 1.005, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}71.13%{transform:matrix3d(.997, 0, 0, 0, 0, .997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}79.26%{transform:matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}87.39%{transform:matrix3d(.999, 0, 0, 0, 0, .999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}95.52%{transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}100%{transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)}}
+
+
+
 .fc-body {
   background-color:white;
 }
@@ -223,5 +236,14 @@ th.fc-day-header.fc-widget-header.fc-wed.fc-today {
 
 /*get rid of the ugly yellow BG in week and day view*/
 td.fc-day.fc-widget-content.fc-wed.fc-today.fc-state-highlight {
-    background-color: white;
+    background-color: grey;
 }
+
+.fc-unthemed td.fc-today {
+ background-color: white;
+}
+
+.fc-bgevent{opacity:.1}
+.fc-nonbusiness{background-color:#3b3b3b}
+
+

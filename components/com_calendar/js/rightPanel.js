@@ -5,6 +5,7 @@ var tmpl_patient_appointments
 $(document).ready(function() {
   //hide the patient_details div
   $('#rightPanel .patient_details').toggle();
+  $('#rightPanel .search_results').toggle();
   //load the templates & parse
   tmpl_patient_search_results  = $('#tmpl_patient_search_results').html();
   tmpl_patient_demographics = $('#tmpl_patient_demographics').html();
@@ -18,9 +19,15 @@ $(document).ready(function() {
 
     $('#rightPanel .patient-search').keyup(function() {
       $('#rightPanel .patient_details').hide();
+      $('#rightPanel .default').hide();
       $('#rightPanel .search_results').show();
 
-      if ($(this).val().length < 1){$('#rightPanel .search_results').html('');return;} //input string is empty
+      if ($(this).val().length < 1){
+        $('#rightPanel .search_results').html('')
+        $('#rightPanel .search_results').hide();
+        $('#rightPanel .default').show();
+        return;
+      } //input string is empty
         
         
         $.ajax({
@@ -34,7 +41,6 @@ $(document).ready(function() {
 
         },
         success: function(patients) {
-          log(patients);
   
 				$('#rightPanel .search_results').html(results);
                   
@@ -76,10 +82,8 @@ $(document).ready(function() {
 
      $(document).on('click','#rightPanel .bookAppointment',function() {
       
-      //the booknext appointment handler reads the 
       bFlagBookNext = true;
       fNewPatient = false;
-      log('cl');
       patientID = oPatient.patient_id;
       objNewAppointment = oPatient;
       objNewAppointment.patientName = oPatient.patient_surname + ' ' + oPatient.patient_firstname;
@@ -94,10 +98,17 @@ $(document).ready(function() {
     });
   
      $(document).on('click','#rightPanel .appointment',function() {
+       
        var start = $(this).attr('start');
-       calendar.fullCalendar( 'gotoDate', moment(start,'YYYY-MM-DD'));
-
+       eventIDtoHighlight = $(this).attr('appointmentID');
+       highlightEvent = true;
+       calendar.fullCalendar( 'gotoDate', moment(start,'YYYY-MM-DD')); 
+       calendar.fullCalendar( 'rerenderEvents' );
+      
      });
+
+     
+
 });
 
 
@@ -136,15 +147,31 @@ function renderRightPanelPatientDetails(){
 }
 
 function renderRightPanelPatientAppointments(){
-  log('rendering the apps');
-  Appointment.getFutureAppointments(patientID,function(appointments){
+  var futureAppointments, lastAppointment
+  $.when(
+    Appointment.getFutureAppointments(patientID,function(appointments){futureAppointments = appointments}),
+    Appointment.getLastAppointment(patientID,function(appointment){lastAppointment = appointment})
+
+  
+  ).then(function() {
+    var title_future_appointments = 'Next Appointment';
+    var title_last_appointment = 'Last Appointment';
+    if (futureAppointments.length > 1){title_future_appointments = 'Next Appointments'};
+    if (futureAppointments.length < 1){title_future_appointments = 'No future appointments'};
+    if (lastAppointment.length <1 ){title_last_appointment = "No last appointment"}
+
       var rendered = Mustache.render(tmpl_patient_appointments,
-          {appointments : appointments
+          { title_future_appointments:title_future_appointments,
+            title_last_appointment: title_last_appointment,
+            future_appointments : futureAppointments,
+            last_appointment : lastAppointment
           });
       $('#rightPanel .patient_appointments').html(rendered);  
-      log('blabla ' + rendered);
-    });
-  }
+  
+  });
+  
+
+}
 
 
 

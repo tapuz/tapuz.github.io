@@ -26,8 +26,8 @@
 					</div>
 				</div>
 				<div class="content">
-					<div class="search_results">
-					</div>
+					<div class="default"></div>
+					<div class="search_results"></div>
 					<div class="patient_details">
 						<div class="patient_demographics"></div>
 						<div class="patient_appointments"></div>
@@ -59,8 +59,9 @@
 		<h5 class="modal-title">Add Appointment</h5>
       </div>
       <div class="modal-body">
-        <!-- Nav tabs -->
-        <ul class="nav nav-pills">
+		<!-- Nav tabs -->
+		<button type="button" class="btn btn-primary pull-right" ><i class="fas fa-ban"></i>&nbsp;Custom appointment</button>
+        <!-- <ul class="nav nav-pills">
 			<li class="active">
                 <a  href="#details" data-toggle="tab"><i class="fa fa-calendar fa-fw"></i>Details</a>
 			</li>
@@ -68,7 +69,7 @@
                 <a  href="#notes" data-toggle="tab"><i class="fa fa-pencil fa-fw"></i>Notes</a>
 			</li>
 			
-		</ul>
+		</ul> -->
 	
 		
 		<div class="tab-content">
@@ -184,6 +185,25 @@
   </div>
 </div>
 <!--stop: modal -->
+
+<!--start: busy-time-modal -->
+<div class="modal fade" id="busyTime">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h3 class="modal-title">Thierry Duhameeuw</h3>      
+      </div>
+      <div class="modal-body">
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--stop: busy-time-modal -->
 
 <!--start: eventDetails-modal -->
 <div class="modal fade" id="eventDetails">

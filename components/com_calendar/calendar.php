@@ -52,19 +52,21 @@ switch (getVar('task')){
 	case 'getUsers':
 		//only get
 		if ( current_user_can('view_all_calendars') ) {
+		
 			$args = array(
 			//user role__in to select multiple roles
 			'role__in'       => array('practitioner','clinic_admin'),
 			'order'          => 'ASC',
 			'orderby'        => 'display_name',
 			'fields'         => 'all_with_meta',
+			
 			);
 			
 		} else {
 			
 			$args = array(
 			'include'          => array(get_current_user_id()),
-			'fields'         => 'all_with_meta',
+			'fields'         => 'all_with_meta'
 			);
 		}
 		// The User Query
@@ -85,6 +87,11 @@ switch (getVar('task')){
 		 $user = get_current_user_id();
 		 echo $clinics = json_encode(Clinic::getClinics($user));
 	   
+	break;
+
+	case 'getWorkingPlan':
+		echo $workingPlan = get_user_meta( getVar('userID'), 'working_plan_2',1);
+
 	break;
 	
 	
@@ -190,12 +197,14 @@ switch (getVar('task')){
 	break;
 
 	case 'getFutureAppointments':
+	    error_log('getting da shit!!');
 		echo json_encode(Calendar::getFutureAppointments(getVar('patientID')));
 	break;
-	
-	case 'getAppointmentRequests': //not used anymore
-		echo json_encode(Calendar::getAppointmentRequests(getVar('group')));
+
+	case 'getLastAppointment':
+		echo json_encode(Calendar::getLastAppointment(getVar('patientID')));
 	break;
+
 	case 'setStatus':
 		Calendar::setStatus(getVar('appointmentID'),getVar('status'));
 	break;

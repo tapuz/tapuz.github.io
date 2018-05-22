@@ -11,9 +11,16 @@ class Calendar {
 	}
 	
 
-	public function getFutureAppointments($patientID){
+	public static function getFutureAppointments($patientID){
 		global $wpdb;
-		$query = $wpdb->prepare("SELECT *,DATE_FORMAT(start, '%%a, %%e %M %Y') as strStart FROM view_appointments WHERE (patientID = %d AND start > CURRENT_DATE)",$patientID);
+		$query = $wpdb->prepare("SELECT *,DATE_FORMAT(start, '%%a, %%e %%M %%Y - %%H:%%i') as strStart FROM view_appointments WHERE (patientID = %d AND start > CURRENT_DATE)",$patientID);
+		$appointments = $wpdb->get_results($query);
+		return  $appointments;
+	}
+
+	public static function getLastAppointment($patientID){
+		global $wpdb;
+		$query = $wpdb->prepare("SELECT *,DATE_FORMAT(start, '%%a, %%e %%M %%Y - %%H:%%i') as strStart FROM view_appointments WHERE (patientID = %d AND start < CURRENT_DATE) ORDER BY start DESC LIMIT 1",$patientID);
 		$appointments = $wpdb->get_results($query);
 		return  $appointments;
 	}
@@ -126,7 +133,7 @@ class Calendar {
 		return self::getAppointment($appointment->id);
 	}
 	
-	public function setStatus($appointmentID,$status){
+	public static function setStatus($appointmentID,$status){
 		global $wpdb;
 		$query = sprintf("UPDATE table_appointments SET status = %s where appointment_id = %s",$status,$appointmentID);
 		$wpdb->query($query);

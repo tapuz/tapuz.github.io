@@ -70,8 +70,8 @@ $(document).ready(function() {
 		$('.selected-patient-name').html(objEvent.patientName);
 		$('.selected-dob').html(objEvent.dob);
 		$('.selected-telephone').html(objEvent.phone);
-		$('.selected-email').html(objEvent.email);
-			
+    $('.selected-email').html(objEvent.email);
+    renderServicesLookup(objEvent.clinic);	
 		$('#selectService').val(objEvent.serviceId);
     $('#clinicSelectEditApp').val(objEvent.clinic);
 		$('.patient-select #patient-search').blur();

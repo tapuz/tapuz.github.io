@@ -44,7 +44,7 @@ var patientLinkedClinic = null;
                         practitioner: userID,
                         clinic: clinic
                       },function(newPatientID){
-                          Appointment.add({start:start,end:end,patientID:newPatientID,userID:userID,service:service,status:eventStatus,clinic:clinic},function (appointment){
+                          Appointment.add({start:start,end:end,patientID:newPatientID,userID:userID,service:service,status:eventStatus,clinic:clinic},function (appointment){ 
                             calendar.fullCalendar('renderEvent', appointment);
                             calendar.fullCalendar('unselect');
                             closeEditAppModal();
@@ -57,6 +57,9 @@ var patientLinkedClinic = null;
         } else {
           
           Appointment.add({start:start,end:end,patientID:patientID,userID:userID,service:service,status:eventStatus,clinic:clinic},function (appointment){
+            renderRightPanelPatientAppointments();
+            eventIDtoHighlight = appointment.id;
+            highlightEvent = true;
             calendar.fullCalendar('renderEvent', appointment);
             calendar.fullCalendar('unselect');
             closeEditAppModal();        
@@ -121,6 +124,7 @@ var patientLinkedClinic = null;
                            clinic: $('#clinicSelectEditApp').val()
                            },
                            function(appointment){
+                            renderRightPanelPatientAppointments();
                             calendar.fullCalendar('removeEvents' , objEvent.id );
                             calendar.fullCalendar('renderEvent', appointment);
                             closeEditAppModal();

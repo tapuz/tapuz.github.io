@@ -101,7 +101,7 @@ class Patient
 		
 	}
 	
-	public function getPatient($patient_id)	{
+	public static function getPatient($patient_id)	{
 	global $wpdb;
 	// get patient object 
 	// take into account-> only get patients from clinic // to be added

@@ -19,7 +19,7 @@ class Appointment {
 
   static getFutureAppointments(patientID,callback){
     
-     $.ajax({
+     return $.ajax({
       url: "ajax.php",
       dataType: "json",
       type: 'post',
@@ -32,6 +32,23 @@ class Appointment {
         if(callback){callback(data);}
       }
      });
+  }
+
+  static getLastAppointment(patientID,callback){
+    
+    return $.ajax({
+     url: "ajax.php",
+     dataType: "json",
+     type: 'post',
+     data: {
+       com: 'calendar',
+       task: 'getLastAppointment',
+       patientID: patientID
+     },
+     success: function(data) {
+       if(callback){callback(data);}
+     }
+    });
   }
   
   static getRequests(group,callback){
